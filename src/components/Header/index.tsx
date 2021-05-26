@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom'
 
 import { RowCenter } from '../Row';
-import { ReactComponent as Damura } from '../../assets/images/damura.svg';
+import { ReactComponent as Daruma } from '../../assets/images/daruma.svg';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -45,7 +45,7 @@ const AppLink = styled.a`
     }
 `
 
-const StyledDamura = styled(Damura)`
+const StyledDaruma = styled(Daruma)`
     width: 40px;
 `
 
@@ -78,8 +78,8 @@ export default function Header() {
         <StyledHeader>
             <StyledNav>
                 <StyledHomeLink to="/" >
-                    <StyledDamura />
-                    <StyledTitle>Damurascan</StyledTitle>
+                    <StyledDaruma />
+                    <StyledTitle>Darumascan</StyledTitle>
                 </StyledHomeLink>
             </StyledNav>
             <StyledNav>
@@ -88,7 +88,7 @@ export default function Header() {
                     href="https://exchange.pancakeswap.finance/"
                     target="_blank"
                 >
-                    Buy DAMURA
+                    Buy DARUMA
                 </ExternalNavLink>
                 <AppLink
                     target="_blank"
