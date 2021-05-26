@@ -8,10 +8,6 @@ import Home from './Home';
 import Team from './Team';
 import { RedirectPathToHomeOnly } from './Home/redirects'
 
-const AppWrapper = styled.div`
-    display: flex
-`;
-
 function App() {
 
     function resizeListener() {
@@ -23,14 +19,12 @@ function App() {
 
     return (
         <>
-            <AppWrapper>
-                <Header />
-                <Switch>
-                    <Route exact strict path="/" component={Home} />
-                    <Route exact strict path="/team" component={Team} />
-                    <Route component={RedirectPathToHomeOnly} />
-                </Switch>
-            </AppWrapper>
+            <Header />
+            <Switch>
+                <Route exact strict path="/" component={Home} />
+                <Route exact strict path="/team" component={Team} />
+                <Route component={RedirectPathToHomeOnly} />
+            </Switch>
         </>
     );
 }

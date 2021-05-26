@@ -6,6 +6,8 @@ export interface Colors {
 
     primary1: string,
 
+    gradient1: string,
+
     bg1: string,
 
     primaryText1: string,

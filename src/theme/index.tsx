@@ -29,6 +29,8 @@ export function colors(darkMode: boolean): Colors {
 
         primary1: '#e8283f',
 
+        gradient1: 'linear-gradient(to right, #BA181D, #E8283F 25%, #FF4063 100%)',
+
         bg1: '#030813',
 
         primaryText1: '#e8283f',
@@ -61,14 +63,14 @@ export const FixedGlobalStyle = createGlobalStyle`
         font-family: 'Montserrat', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        box-sizing: border-box;
+        line-height: 1.6;
+        overflow-y: scroll;
     }
 
     html, body {
         margin: 0;
         padding: 0;
-    }
-
-    * {
     }
 `
 
