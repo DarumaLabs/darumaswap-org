@@ -6,6 +6,7 @@ import { RowCenter } from '../Row';
 import { ReactComponent as Daruma } from '../../assets/images/daruma.svg';
 
 const StyledHeader = styled.header`
+    z-index: 1;
     display: flex;
     align-items: center;
     flex-direction: row;

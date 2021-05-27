@@ -34,6 +34,8 @@ export function colors(darkMode: boolean): Colors {
 
         bg1: '#030813',
 
+        bgGradient: 'linear-gradient(to bottom, #03081300, #030813)',
+
         primaryText1: '#e8283f',
 
         text1: '#f7f7f7',
@@ -77,7 +79,6 @@ export const FixedGlobalStyle = createGlobalStyle`
 
 export const ThemedGlobalStyle = createGlobalStyle`
     body {
-        height: var(--window-height, 100vh);
         background-color: ${({theme}) => theme.bg1};
     }
 
