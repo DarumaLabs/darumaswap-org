@@ -9,7 +9,8 @@ import { Colors } from './styled'
 
 const MEDIA_QUERIES_WIDTH = {
     extraSmall: 481,
-    small: 769
+    small: 769,
+    medium: 1024
 }
 
 const mediaWidth: { [breakpoint in keyof typeof MEDIA_QUERIES_WIDTH]: typeof css } =

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom'
+import Menu from '../Menu'
 
 import { RowCenter } from '../Row';
 import { ReactComponent as Daruma } from '../../assets/images/daruma.svg';
@@ -9,13 +10,29 @@ const StyledHeader = styled.header`
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1.5rem 1.25rem;
+    padding: 1.5rem 5rem;
     position: sticky;
     top: 0;
+
+    ${({theme}) => theme.media.small`
+        padding: 1rem 1.25rem;
+    `}
+
+    ${({theme}) => theme.media.medium`
+        padding: 1.5rem 1.25rem;
+    `}
+`
+
+const StyledTitleNav = styled(RowCenter)`
+    justify-content: space-between;
 `
 
 const StyledNav = styled(RowCenter)`
     justify-content: space-between;
+
+    ${({theme}) => theme.media.small`
+        display: none;
+    `}
 `
 
 const StyledHomeLink = styled(NavLink)`
@@ -53,6 +70,10 @@ const StyledTitle = styled.h2`
     font-size: 1.25rem;
     margin: 0;
     margin-left: 20px;
+
+    ${({theme}) => theme.media.small`
+        display: none;
+    `}
 `
 
 const StyledNavLink = styled(NavLink)`
@@ -73,15 +94,23 @@ const ExternalNavLink = styled.a`
     color: ${({theme}) => theme.text1}
 `
 
+const StyledMenu = styled(Menu)`
+    display: none;
+
+    ${({theme}) => theme.media.small`
+        display: block;
+    `}
+`
+
 export default function Header() {
     return (
         <StyledHeader>
-            <StyledNav>
+            <StyledTitleNav>
                 <StyledHomeLink to="/" >
                     <StyledDaruma />
                     <StyledTitle>Darumascan</StyledTitle>
                 </StyledHomeLink>
-            </StyledNav>
+            </StyledTitleNav>
             <StyledNav>
                 <StyledNavLink to="/team" >Meet Team</StyledNavLink>
                 <ExternalNavLink
@@ -97,6 +126,7 @@ export default function Header() {
                     Use Darumascan
                 </AppLink>
             </StyledNav>
+            <StyledMenu />
         </StyledHeader>
     )
 }

@@ -19,7 +19,8 @@ declare module 'styled-components' {
     export interface DefaultTheme extends Colors {
         media: {
             extraSmall: ThemedCssFunction<DefaultTheme>,
-            small: ThemedCssFunction<DefaultTheme>
+            small: ThemedCssFunction<DefaultTheme>,
+            medium: ThemedCssFunction<DefaultTheme>
         }
     }
 }
