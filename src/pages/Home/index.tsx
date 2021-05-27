@@ -53,6 +53,7 @@ const StyledVLogoText = styled(VLogoText)`
     width: 50%;
     z-index: 1;
     display: none;
+    margin-bottom: 150px;
 
     ${({theme}) => theme.media.small`
         display: inherit;
