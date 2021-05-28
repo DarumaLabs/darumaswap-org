@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
+import Stats from '../../components/Stats';
 import { CardFade, CardBGImage } from '../../components/Utils';
-import HLogoTextPath from '../../assets/images/h-logo-text.png';
-import VLogoTextPath from '../../assets/images/v-logo-text.png';
+import HLogoText from '../../assets/images/h-logo-text.png';
+import VLogoText from '../../assets/images/v-logo-text.png';
 
 const BGCard = styled.span`
     width: 100vw;
-    height: 70vh;
-    max-height: 900px;
+    height: 50vh;
+    max-height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,17 +19,18 @@ const StyledBody = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 100px;
+
+    ${({theme}) => theme.media.medium`
+        margin-top: 50px;
+    `}
+
+    ${({theme}) => theme.media.small`
+        margin-top: 75px;
+    `}
 `
 
-const HLogoText = ({className}: {
-        className?: string
-}) => {
-    return (
-        <img className={className} src={HLogoTextPath} />
-    )
-}
-
-const StyledHLogoText = styled(HLogoText)`
+const StyledHLogoText = styled.img`
     width: 50%;
     z-index: 1;
 
@@ -41,26 +43,18 @@ const StyledHLogoText = styled(HLogoText)`
     `}
 `
 
-const VLogoText = ({className}: {
-        className?: string
-}) => {
-    return (
-        <img className={className} src={VLogoTextPath} />
-    )
-}
-
-const StyledVLogoText = styled(VLogoText)`
+const StyledVLogoText = styled.img`
     width: 50%;
     z-index: 1;
     display: none;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 
     ${({theme}) => theme.media.small`
         display: inherit;
     `}
 
     ${({theme}) => theme.media.extraSmall`
-        width: 70%;
+        width: 60%;
     `}
 `
 
@@ -70,10 +64,11 @@ export default function Home() {
         <BGCard>
             <CardBGImage />
             <CardFade />
-            <StyledHLogoText />
-            <StyledVLogoText />
+            <StyledHLogoText src={HLogoText} />
+            <StyledVLogoText src={VLogoText} />
         </BGCard>
         <StyledBody>
+            <Stats />
         </StyledBody>
         <br />
         <br />

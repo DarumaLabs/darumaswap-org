@@ -11,8 +11,8 @@ export const CardBGImage = styled.span`
     background-repeat: no-repeat;
     background-image: ${({theme}) => theme.bgGradient}, url(${backgroundImage});
     width: 100%;
-    height 90%;
-    max-height: 1200px;
+    height 80%;
+    max-height: 1000px;
 `
 
 export const CardFade = styled.span`
