@@ -10,7 +10,8 @@ import { Colors } from './styled'
 const MEDIA_QUERIES_WIDTH = {
     extraSmall: 481,
     small: 769,
-    medium: 1024
+    medium: 1024,
+    large: 1200
 }
 
 const mediaWidth: { [breakpoint in keyof typeof MEDIA_QUERIES_WIDTH]: typeof css } =
@@ -42,7 +43,7 @@ export function colors(darkMode: boolean): Colors {
     }
 }
 
-export function theme(darkMode: boolean): DefaultTheme {
+function theme(darkMode: boolean): DefaultTheme {
     return {
         ...colors(darkMode),
 
@@ -50,34 +51,7 @@ export function theme(darkMode: boolean): DefaultTheme {
     }
 }
 
-export default function ThemeProvider({children}: {children: React.ReactNode}) {
-    const darkMode = false
-    const themeObject = useMemo(() => theme(darkMode), [darkMode])
-
-    return (
-        <StyledThemeProvider theme={themeObject} >
-            {children}
-        </StyledThemeProvider>
-    )
-}
-
-export const FixedGlobalStyle = createGlobalStyle`
-    html {
-        font-family: 'Montserrat', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        box-sizing: border-box;
-        line-height: 1.6;
-        overflow-y: scroll;
-    }
-
-    html, body {
-        margin: 0;
-        padding: 0;
-    }
-`
-
-export const ThemedGlobalStyle = createGlobalStyle`
+const ThemedGlobalStyle = createGlobalStyle`
     body {
         background-color: ${({theme}) => theme.bg1};
     }
@@ -94,3 +68,15 @@ export const ThemedGlobalStyle = createGlobalStyle`
         font-size: 2rem;
     }
 `
+
+export default function ThemeProvider({children}: {children: React.ReactNode}) {
+    const darkMode = false
+    const themeObject = useMemo(() => theme(darkMode), [darkMode])
+
+    return (
+        <StyledThemeProvider theme={themeObject} >
+            <ThemedGlobalStyle />
+            {children}
+        </StyledThemeProvider>
+    )
+}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundImage from '../../assets/images/background.png'
+import backgroundImage from '../images/background.png'
 
 export const CardBGImage = styled.span`
     position: absolute;

@@ -1,8 +1,9 @@
+import React from 'react'
 import styled from 'styled-components';
-import RowCenter from '../Row';
-import ColumnCenter from '../Column';
 
-const StatsWrapper = styled(RowCenter)`
+const StatsWrapper = styled.div`
+    display: flex;
+    align-items: center;
     width: 80%;
     max-width: 1000px;
     justify-content: space-between;
@@ -38,23 +39,26 @@ interface StatDataProps {
     className?: string
 }
 
-function StatData({
+function Data({
     name,
     children,
     className
-}: StatDataProps) {
+}: DataProps) {
     return (
-        <ColumnCenter className={className} >
+        <div
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        className={className}
+        >
             <Number>
                 {children}
                 <span style={{opacity: 0.3}} >+</span>
             </Number>
             <NumberInformation>{name}</NumberInformation>
-        </ColumnCenter>
+        </div>
     )
 }
 
-const StyledStatData = styled(StatData)`
+const StyledData = styled(Data)`
     width: 250px;
     text-align: center;
     color: ${({theme}) => theme.text1};
@@ -78,14 +82,14 @@ const Breakline = styled.span`
     `}
 `
 
-export default function Stats() {
+export default function TokenData() {
     return (
         <StatsWrapper>
-            <StyledStatData name="Marketcap" >$196B</StyledStatData>
-            <StyledStatData name="Liquidity" >$12M</StyledStatData>
+            <StyledData name="Marketcap" >$196B</StyledData>
+            <StyledData name="Liquidity" >$12M</StyledData>
             <Breakline />
-            <StyledStatData name="Holders" >78K</StyledStatData>
-            <StyledStatData name="All time volume" >$7B</StyledStatData>
+            <StyledData name="Holders" >78K</StyledData>
+            <StyledData name="All time volume" >$7B</StyledData>
         </StatsWrapper>
     )
 }

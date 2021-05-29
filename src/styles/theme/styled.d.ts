@@ -22,7 +22,8 @@ declare module 'styled-components' {
         media: {
             extraSmall: ThemedCssFunction<DefaultTheme>,
             small: ThemedCssFunction<DefaultTheme>,
-            medium: ThemedCssFunction<DefaultTheme>
+            medium: ThemedCssFunction<DefaultTheme>,
+            large: ThemedCssFunction<DefaultTheme>
         }
     }
 }
