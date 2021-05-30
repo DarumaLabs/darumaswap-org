@@ -4,10 +4,10 @@ const menu = [
         sublinks: [
             {
                 name: "Telegram",
-                link: "https://t.me/darumascan"
+                href: "https://t.me/darumascan"
             }, {
                 name: "Twitter",
-                link: "https://twitter.com/darumascan"
+                href: "https://twitter.com/darumascan"
             }
         ]
     }, {
@@ -15,15 +15,20 @@ const menu = [
         sublinks: [
             {
                 name: "Meet Team",
-                link: "/team"
+                href: "/team"
             }, {
                 name: "Github",
-                link: "https://github.com/darumascan"
+                href: "https://github.com/darumascan"
             }
         ]
     }, {
         name: "Buy DARUMA",
-        link: "https://exchange.pancakeswap.finance"
+        sublinks: [
+            {
+                name: "PancakeSwap",
+                href: "https://exchange.pancakeswap.finance"
+            }
+        ]
     }
 ]
 

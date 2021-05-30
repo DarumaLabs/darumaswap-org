@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from 'gatsby'
 import { darken } from 'polished'
 
-import Menu from '../Menu'
+import Menu from './menu'
 import Daruma from '../images/daruma.inline.svg'
 import MenuIcon from '../images/menu.inline.svg'
 
@@ -63,7 +63,7 @@ const AppLink = styled.a`
     height: 35px;
     padding: 0 20px;
     color: ${({theme}) => theme.text1};
-    border-radius: 8px;
+    border-radius: 0.5rem;
 
     &.disabled {
         cursor: auto;
@@ -97,19 +97,6 @@ const StyledNavLink = styled(Link)`
     }
 `
 
-const ExternalNavLink = styled.a`
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 0;
-    margin-right: 20px;
-    text-decoration: none;
-    color: ${({theme}) => theme.text1};
-
-    &:hover {
-        color: ${({theme}) => darken(0.2, theme.text1)}
-    }
-`
-
 const StyledMenuIcon = styled(MenuIcon)`
     display: none;
 
@@ -118,33 +105,51 @@ const StyledMenuIcon = styled(MenuIcon)`
     `}
 `
 
-const Header = ({ siteTitle }) => (
-    <StyledHeader>
-        <StyledTitleNav>
-            <StyledHomeLink to="/" >
-                <StyledDaruma />
-                <StyledTitle>{siteTitle}</StyledTitle>
-            </StyledHomeLink>
-        </StyledTitleNav>
-        <StyledNav>
-            <StyledNavLink to="/team" >Meet Team</StyledNavLink>
-            <StyledNavLink to="/team" >Community</StyledNavLink>
-            <ExternalNavLink
-                href="https://exchange.pancakeswap.finance/"
-                target="_blank"
-            >
-                Buy DARUMA
-            </ExternalNavLink>
-            <AppLink
-                target="_blank"
-                href="https://app.darumascan.org/"
-            >
-                Use Darumascan
-            </AppLink>
-        </StyledNav>
-        <StyledMenuIcon />
-    </StyledHeader>
-)
+function Header({ siteTitle }) {
+    const data = useStaticQuery(graphql`
+        {
+            site {
+                siteMetadata {
+                    menulinks {
+                        name
+                        sublinks {
+                            name
+                            href
+                        }
+                    }
+                    title
+                }
+            }
+        }
+    `)
+
+    console.log(data)
+
+    return (
+        <StyledHeader>
+            <StyledTitleNav>
+                <StyledHomeLink to="/" >
+                    <StyledDaruma />
+                    <StyledTitle>{siteTitle}</StyledTitle>
+                </StyledHomeLink>
+            </StyledTitleNav>
+            <StyledNav>
+                {
+                    data.site.siteMetadata.menulinks.map((menulink, index) => {
+                        return <Menu key={index} menulink={menulink} />
+                    })
+                }
+                <AppLink
+                    target="_blank"
+                    href="https://app.darumascan.org/"
+                >
+                    Use Darumascan
+                </AppLink>
+            </StyledNav>
+            <StyledMenuIcon />
+        </StyledHeader>
+    )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
