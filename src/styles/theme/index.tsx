@@ -33,9 +33,7 @@ export function colors(darkMode: boolean): Colors {
 
         gradient1: 'linear-gradient(to right, #BA181D, #E8283F 25%, #FF4063 100%)',
 
-        bg1: '#030813',
-
-        bgGradient: 'linear-gradient(to bottom, #03081300, #030813)',
+        bg1: '#0d1114',
 
         primaryText1: '#e8283f',
 

@@ -6,7 +6,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../layouts"
 import Seo from "../components/seo"
 import TokenData from '../components/TokenData'
-import { CardFade, CardBGImage } from '../components/utils'
+import { CardBGImage } from '../components/utils'
 import HLogoText from '../images/h-logo-text.png'
 import VLogoText from '../images/v-logo-text.png'
 
@@ -69,7 +69,6 @@ export default function Home() {
             <BGCard>
                 <Seo title="Darumascan | Home" />
                 <CardBGImage />
-                <CardFade />
                 <StyledHLogoText src={HLogoText} />
                 <StyledVLogoText src={VLogoText} />
             </BGCard>

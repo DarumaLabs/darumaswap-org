@@ -10,8 +10,6 @@ export interface Colors {
 
     bg1: string,
 
-    bgGradient: string,
-
     primaryText1: string,
 
     text1: string,

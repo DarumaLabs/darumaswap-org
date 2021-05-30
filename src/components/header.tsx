@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { darken } from 'polished'
+import { darken, lighten } from 'polished'
 
+import useScrollPosition from '../hooks/useScrollPosition'
 import Menu from './menu'
 import Daruma from '../images/daruma.inline.svg'
 import MenuIcon from '../images/menu.inline.svg'
 
 const StyledHeader = styled.header`
-    z-index: 1;
+    z-index: 99;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -17,6 +18,8 @@ const StyledHeader = styled.header`
     padding: 1.5rem 5rem;
     position: sticky;
     top: 0;
+    background: ${({theme, transparentHeader}) => transparentHeader ? 'transparent' : theme.bg1};
+    border-bottom: ${({theme, transparentHeader}) => transparentHeader ? 'none' : `1px solid ${lighten(0.1, theme.bg1)}`};
 
     ${({theme}) => theme.media.large`
         padding: 1rem 1.25rem;
@@ -123,10 +126,14 @@ function Header({ siteTitle }) {
         }
     `)
 
-    console.log(data)
+    const [isHeaderTransparent, setIsHeaderTransparent] = useState(true)
+
+    useScrollPosition(({ currPos }) => {
+        setIsHeaderTransparent(currPos.y >= 0)
+    })
 
     return (
-        <StyledHeader>
+        <StyledHeader transparentHeader={isHeaderTransparent} >
             <StyledTitleNav>
                 <StyledHomeLink to="/" >
                     <StyledDaruma />
