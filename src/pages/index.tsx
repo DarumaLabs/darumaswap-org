@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../layouts"
 import Seo from "../components/seo"
-import TokenData from '../components/TokenData'
+import TokenData from '../components/tokenData'
 import { CardBGImage } from '../components/utils'
 import HLogoText from '../images/h-logo-text.png'
 import VLogoText from '../images/v-logo-text.png'
