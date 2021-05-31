@@ -15,18 +15,19 @@ const StyledHeader = styled.header`
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1.5rem 5rem;
+    padding: 1rem 5rem;
     position: sticky;
     top: 0;
     background: ${({theme, transparentHeader}) => transparentHeader ? 'transparent' : theme.bg1};
     border-bottom: ${({theme, transparentHeader}) => transparentHeader ? 'none' : `1px solid ${lighten(0.1, theme.bg1)}`};
+    transition: background 0.3s ease;
 
     ${({theme}) => theme.media.large`
         padding: 1rem 1.25rem;
     `}
 
     ${({theme}) => theme.media.medium`
-        padding: 1.5rem 1.25rem;
+        padding: 1rem 1.25rem;
     `}
 `
 
