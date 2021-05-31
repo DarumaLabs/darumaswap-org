@@ -17,7 +17,7 @@ module.exports = {
             options: {
                 bucketName: process.env.AWS_S3_BUCKET || 'NOT_SPECIFIED',
                 protocol: 'https',
-                hostname: 'uniswap.org',
+                hostname: 'darumascan.org',
                 acl: null
             }
         }, {

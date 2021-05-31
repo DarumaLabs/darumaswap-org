@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "darumascan-org",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Live stats on your wallet",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "NegativeHoro",
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
     "gatsby": "^3.4.1",
@@ -41,13 +41,13 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "npx -n \"-r dotenv/config\" gatsby-plugin-s3 deploy"
+    "deploy": "npx --node-options='-r dotenv/config' gatsby-plugin-s3 deploy -y"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/darumascan/darumascan-website"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/darumascan/darumascan-website/issues"
   }
 }
