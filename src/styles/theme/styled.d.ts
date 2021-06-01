@@ -22,6 +22,7 @@ declare module 'styled-components' {
             small: ThemedCssFunction<DefaultTheme>,
             medium: ThemedCssFunction<DefaultTheme>,
             large: ThemedCssFunction<DefaultTheme>
+            minMedium: ThemedCssFunction<DefaultTheme>,
         }
     }
 }

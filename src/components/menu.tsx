@@ -11,6 +11,11 @@ const MenuTitle = styled.p`
     text-decoration: none;
     color: ${({theme}) => theme.text1};
     z-index: 1;
+
+    ${({theme}) => theme.media.medium`
+        font-size: 1.75rem;
+        font-weight: 600;
+    `}
 `
 
 const FloatingMenu = styled.nav`
@@ -20,6 +25,12 @@ const FloatingMenu = styled.nav`
     margin-top: 1.75rem;
     padding: 10px 20px 10px 10px;
     border-radius: 0.5rem;
+
+    ${({theme}) => theme.media.medium`
+        padding: 0;
+        margin: 0 0 0 1rem;
+        background: transparent;
+    `}
 `
 
 const FloatingMenuWrapper = styled.div`
@@ -28,6 +39,14 @@ const FloatingMenuWrapper = styled.div`
     left: -1rem;
     top: 0;
     min-width: 150px;
+
+    ${({theme}) => theme.media.medium`
+        display: inherit;
+        position: relative;
+        min-width: auto;
+        left: 0;
+        margin-bottom: 2rem;
+    `}
 `
 
 const MenuWrapper = styled.div`
@@ -35,18 +54,24 @@ const MenuWrapper = styled.div`
     position: relative;
     transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
 
-    &:hover > ${FloatingMenuWrapper} {
-        display: inherit;
-    }
+    ${({theme}) => theme.media.minMedium`
+        &:hover > ${FloatingMenuWrapper} {
+            display: inherit;
+        }
 
-    &:hover > ${MenuTitle} {
-        color: ${({theme}) => darken(0.2, theme.text1)};
-    }
+        &:hover > ${MenuTitle} {
+            color: ${darken(0.2, theme.text1)};
+        }
 
-    &:hover {
-        transform: translate(2px, 1px);
-        height: 100%;
-    }
+        &:hover {
+            transform: translate(2px, 1px);
+            height: 100%;
+        }
+    `}
+
+    ${({theme}) => theme.media.medium`
+        margin-left: 2rem;
+    `}
 `
 
 const StyledLink = styled(Link)`
@@ -59,6 +84,10 @@ const StyledLink = styled(Link)`
     &:hover {
         color: ${({theme}) => darken(0.2, theme.text1)};
     }
+
+    ${({theme}) => theme.media.medium`
+        font-size: 1.25rem;
+    `}
 `
 
 interface MenuProps {

@@ -8,17 +8,18 @@ import {
 import { Colors } from './styled'
 
 const MEDIA_QUERIES_WIDTH = {
-    extraSmall: 481,
-    small: 769,
-    medium: 1024,
-    large: 1200
+    extraSmall: 'max-width: 481',
+    small: 'max-width: 769',
+    medium: 'max-width: 1024',
+    large: 'max-width: 1200',
+    minMedium: 'min-width: 1025',
 }
 
 const mediaWidth: { [breakpoint in keyof typeof MEDIA_QUERIES_WIDTH]: typeof css } =
     Object.keys(MEDIA_QUERIES_WIDTH).reduce((acc, breakpoint) => {
-        acc[breakpoint] = (a: any, b: any, c: any) => css`
-            @media only screen and (max-width: ${MEDIA_QUERIES_WIDTH[breakpoint]}px) {
-                ${css(a, b, c)}
+        acc[breakpoint] = (first: any, ...interpolations: any[]) => css`
+            @media only screen and (${MEDIA_QUERIES_WIDTH[breakpoint]}px) {
+                ${css(first, ...interpolations)}
             }
         `;
         return acc
