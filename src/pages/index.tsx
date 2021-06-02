@@ -175,8 +175,16 @@ export default function Home() {
                         <Subtitle>Travel the world and discover all hidden Daruma NFT</Subtitle>
 
                         <TitleButtonsWrapper>
-                            <PrimaryButton>Use Darumascan</PrimaryButton>
-                            <SecondaryButton>Learn More</SecondaryButton>
+                            <PrimaryButton
+                                href="https://app.darumascan.org"
+                            >
+                                Use Darumascan
+                            </PrimaryButton>
+                            <SecondaryButton
+                                href="/buy"
+                            >
+                                How to buy
+                            </SecondaryButton>
                         </TitleButtonsWrapper>
 
                     </TitleWrapper>
