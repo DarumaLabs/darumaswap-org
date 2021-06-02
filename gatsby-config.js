@@ -5,7 +5,7 @@ require("dotenv").config();
 module.exports = {
     siteMetadata: {
         title: `Darumascan`,
-        description: `Live stats on your wallet`,
+        description: `Travel the world and discover all hidden Daruma NFT`,
         author: `@Darumascan`,
         menulinks: menu,
         siteUrl: `https://darumascan.org`,

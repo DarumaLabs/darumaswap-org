@@ -1,7 +1,7 @@
 {
   "name": "darumascan-org",
   "private": true,
-  "description": "Live stats on your wallet",
+  "description": "Travel the world and discover all hidden Daruma NFT",
   "version": "0.1.0",
   "author": "NegativeHoro",
   "dependencies": {
