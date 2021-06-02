@@ -15,6 +15,5 @@ export const CardBGImage = styled.span`
         url(${backgroundImage})`
     };
     width: 100%;
-    height 80%;
-    max-height: 1000px;
+    height: 100%;
 `

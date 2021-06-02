@@ -30,13 +30,13 @@ export function colors(darkMode: boolean): Colors {
         white: '#ffffff',
         black: '#000000',
 
-        primary1: '#e8283f',
+        primary1: '#ff003e',
 
-        gradient1: 'linear-gradient(to right, #BA181D, #E8283F 25%, #FF4063 100%)',
+        gradient1: 'linear-gradient(to right, #CC000C, #FF0A53)',
 
         bg1: '#0d1114',
 
-        primaryText1: '#e8283f',
+        primaryText1: '#ff003e',
 
         text1: '#f7f7f7',
     }
@@ -55,11 +55,7 @@ const ThemedGlobalStyle = createGlobalStyle`
         background-color: ${({theme}) => theme.bg1};
     }
 
-    h1 {
-        color: ${({theme}) => theme.primaryText1};
-    }
-
-    h2, h3, h4, h5, h6, p {
+    h1, h2, h3, h4, h5, h6, p {
         color: ${({theme}) => theme.text1};
     }
 

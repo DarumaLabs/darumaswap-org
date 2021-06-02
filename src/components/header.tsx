@@ -80,9 +80,14 @@ const AppLink = styled.a`
     padding: 0 20px;
     color: ${({theme}) => theme.text1};
     border-radius: 0.5rem;
+    transition: transform 0.2s ease;
 
     &.disabled {
         cursor: auto;
+    }
+
+    &:hover {
+        transform: scale(1.02);
     }
 
     ${({theme}) => theme.media.medium`

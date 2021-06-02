@@ -7,76 +7,88 @@ import Layout from "../layouts"
 import Seo from "../components/seo"
 import TokenData from '../components/tokenData'
 import { CardBGImage } from '../components/utils'
-import HLogoText from '../images/h-logo-text.png'
-import VLogoText from '../images/v-logo-text.png'
 
 const BGCard = styled.span`
     width: 100vw;
-    height: 50vh;
-    max-height: 700px;
+    height 70%;
+    max-height: 900px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 `
 
 const StyledBody = styled.div`
     position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 100px;
+    margin-top: 120px;
 
-    ${({theme}) => theme.media.medium`
+    ${({theme}) => theme.media.small`
         margin-top: 50px;
     `}
 
-    ${({theme}) => theme.media.small`
-        margin-top: 75px;
+    ${({theme}) => theme.media.extraSmall`
+        margin-top: 30px;
     `}
 `
 
-const StyledHLogoText = styled.img`
-    width: 50%;
-    z-index: 1;
+const StyledTokenData = styled(TokenData)`
+    margin: 200px auto 0;
 
     ${({theme}) => theme.media.medium`
-        width: 70%;
-    `}
-
-    ${({theme}) => theme.media.small`
-        display: none;
+        margin-top: 150px;
     `}
 `
 
-const StyledVLogoText = styled.img`
-    width: 50%;
-    z-index: 1;
-    display: none;
-    margin-bottom: 50px;
+const Title = styled.h1`
+    max-width: 1100px;
+    margin: 0 auto 0;
+    padding: 0 1.5rem;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 600;
+    line-height: 6rem;
 
-    ${({theme}) => theme.media.small`
-        display: inherit;
+    ${({theme}) => theme.media.large`
+        font-size: 4.5rem;
+    `}
+
+    ${({theme}) => theme.media.medium`
+        font-size: 5rem;
+        line-height: 7rem;
+        text-align: left;
     `}
 
     ${({theme}) => theme.media.extraSmall`
-        width: 60%;
+        font-size: 3rem;
+        line-height: 4rem;
     `}
 `
 
-export default function Home({props}) {
+const DarumaTitle = styled.span`
+    color: ${({theme}) => theme.primaryText1};
+    font-weight: 700;
+`
+
+export default function Home() {
     return (
         <Layout>
+            <Seo
+                title="Home"
+                description="Travel the world and discover all hidden Daruma NFT"
+            />
             <BGCard>
-                <Seo
-                    title="Home"
-                    description="Travel the world and discover all hidden Daruma NFT"
-                />
                 <CardBGImage />
-                <StyledHLogoText src={HLogoText} />
-                <StyledVLogoText src={VLogoText} />
             </BGCard>
             <StyledBody>
-                <TokenData />
+                <Title>
+                    Discover
+                    <DarumaTitle> Daruma </DarumaTitle>
+                    NFT Worldwide
+                </Title>
+                <StyledTokenData />
             </StyledBody>
             <br />
             <br />

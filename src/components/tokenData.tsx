@@ -82,9 +82,11 @@ const Breakline = styled.span`
     `}
 `
 
-export default function TokenData() {
+export default function TokenData({className}: {
+    className?: string
+}) {
     return (
-        <StatsWrapper>
+        <StatsWrapper className={className} >
             <StyledData name="Marketcap" >$196B</StyledData>
             <StyledData name="Liquidity" >$12M</StyledData>
             <Breakline />
