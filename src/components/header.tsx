@@ -8,6 +8,7 @@ import useScrollPosition from '../hooks/useScrollPosition'
 import Menu from './menu'
 import Daruma from '../images/daruma.inline.svg'
 import MenuIcon from './menuIcon'
+import { PrimaryButton } from './button'
 
 const StyledHeader = styled.header`
     z-index: 99;
@@ -65,31 +66,7 @@ const StyledHomeLink = styled(Link)`
     text-decoration: none;
 `
 
-const AppLink = styled.a`
-    display: flex;
-    align-items: center;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    background: ${({theme}) => theme.gradient1};
-    height: 35px;
-    padding: 0 20px;
-    color: ${({theme}) => theme.text1};
-    border-radius: 0.5rem;
-    transition: transform 0.2s ease;
-
-    &.disabled {
-        cursor: auto;
-    }
-
-    &:hover {
-        transform: scale(1.02);
-    }
-
+const AppLink = styled(PrimaryButton)`
     ${({theme}) => theme.media.medium`
         display: none;
     `}

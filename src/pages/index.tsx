@@ -7,6 +7,8 @@ import Layout from "../layouts"
 import Seo from "../components/seo"
 import TokenData from '../components/tokenData'
 import { CardBGImage } from '../components/utils'
+import Katakana from '../images/katakana.inline.svg'
+import { PrimaryButton, SecondaryButton } from '../components/button'
 
 const BGCard = styled.span`
     width: 100vw;
@@ -23,7 +25,7 @@ const BGCard = styled.span`
 
 const StyledBody = styled.div`
     position: relative;
-    margin-top: 120px;
+    margin-top: 50px;
 
     ${({theme}) => theme.media.small`
         margin-top: 50px;
@@ -35,29 +37,36 @@ const StyledBody = styled.div`
 `
 
 const StyledTokenData = styled(TokenData)`
-    margin: 200px auto 0;
+    margin: 4.5rem auto 0;
 
     ${({theme}) => theme.media.medium`
-        margin-top: 150px;
+        margin-top: 4rem;
+    `}
+
+    ${({theme}) => theme.media.small`
+        margin-top: 2rem;
     `}
 `
 
 const Title = styled.h1`
-    max-width: 1100px;
     margin: 0 auto 0;
-    padding: 0 1.5rem;
     text-align: center;
     font-size: 6rem;
     font-weight: 600;
-    line-height: 6rem;
+    line-height: 7rem;
+    text-shadow: 5px 3px ${({theme}) => theme.black};
 
     ${({theme}) => theme.media.large`
         font-size: 4.5rem;
+        line-height: 5.5rem;
     `}
 
     ${({theme}) => theme.media.medium`
         font-size: 5rem;
-        line-height: 7rem;
+        line-height: 6rem;
+    `}
+
+    ${({theme}) => theme.media.small`
         text-align: left;
     `}
 
@@ -72,6 +81,75 @@ const DarumaTitle = styled.span`
     font-weight: 700;
 `
 
+const TitleSection = styled.section`
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+`
+
+const StyledKatakana = styled(Katakana)`
+    width: 450px;
+    min-width: 450px;
+
+    ${({theme}) => theme.media.large`
+        width: 300px;
+        min-width: 300px;
+    `}
+
+    ${({theme}) => theme.media.large`
+        display: none;
+    `}
+`
+
+const TitleWrapper = styled.div`
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+const Subtitle = styled.h2`
+    margin-top: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    ${({theme}) => theme.media.large`
+        margin-top: 4rem;
+    `}
+
+    ${({theme}) => theme.media.small`
+        margin-top: 1.5rem;
+    `}
+`
+
+const TitleButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+
+    & > * {
+        margin: 0 1rem;
+    }
+
+    ${({theme}) => theme.media.large`
+        margin-bottom: 0;
+    `}
+
+    ${({theme}) => theme.media.small`
+        flex-direction: column;
+        align-items: center;
+        margin-top 1.25rem;
+
+        & > * {
+            margin: 0.75rem 0;
+        }
+    `}
+`
+
 export default function Home() {
     return (
         <Layout>
@@ -83,11 +161,27 @@ export default function Home() {
                 <CardBGImage />
             </BGCard>
             <StyledBody>
-                <Title>
-                    Discover
-                    <DarumaTitle> Daruma </DarumaTitle>
-                    NFT Worldwide
-                </Title>
+                <TitleSection>
+                    <TitleWrapper>
+
+                        <Title>
+                            Discover
+                            <span> </span>
+                            <DarumaTitle>Daruma</DarumaTitle>
+                            <span> </span>
+                            NFT Worldwide
+                        </Title>
+
+                        <Subtitle>Travel the world and discover all hidden Daruma NFT</Subtitle>
+
+                        <TitleButtonsWrapper>
+                            <PrimaryButton>Use Darumascan</PrimaryButton>
+                            <SecondaryButton>Learn More</SecondaryButton>
+                        </TitleButtonsWrapper>
+
+                    </TitleWrapper>
+                    <StyledKatakana />
+                </TitleSection>
                 <StyledTokenData />
             </StyledBody>
             <br />

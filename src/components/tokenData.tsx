@@ -21,7 +21,7 @@ const StatsWrapper = styled.div`
 
 const Number = styled.span`
     font-size: 3rem;
-    font-family: Montserrat;
+    font-family: 'Montserrat';
     font-weight: 600;
 
     ${({theme}) => theme.media.small`
