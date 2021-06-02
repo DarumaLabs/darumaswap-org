@@ -63,11 +63,14 @@ const StyledVLogoText = styled.img`
     `}
 `
 
-export default function Home() {
+export default function Home({props}) {
     return (
         <Layout>
             <BGCard>
-                <Seo title="Darumascan | Home" />
+                <Seo
+                    title="Home"
+                    description="Travel the world and discover all hidden Daruma NFT"
+                />
                 <CardBGImage />
                 <StyledHLogoText src={HLogoText} />
                 <StyledVLogoText src={VLogoText} />
