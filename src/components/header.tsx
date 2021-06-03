@@ -163,9 +163,9 @@ function Header({ siteTitle }) {
                 }
                 <AppLink
                     target="_blank"
-                    href="https://app.darumascan.org/"
+                    href="https://app.darumaswap.org/"
                 >
-                    Use Darumascan
+                    Use Darumaswap
                 </AppLink>
             </StyledNav>
             <StyledMenuIcon isOpen={isMenuOpen} onClick={toogleIsMenuOpen} />

@@ -4,12 +4,12 @@ require("dotenv").config();
 
 module.exports = {
     siteMetadata: {
-        title: `Darumascan`,
-        description: `Travel the world and discover all hidden Daruma NFT`,
-        author: `@Darumascan`,
+        title: `Darumaswap`,
+        description: `The new generation of decentralised swapping protocol`,
+        author: `@NegativeHoro`,
         menulinks: menu,
-        siteUrl: `https://darumascan.org`,
-        repository: `https://github.com/Darumascan/darumascan-website`,
+        siteUrl: `https://darumaswap.org`,
+        repository: `https://github.com/DarumaLabs/darumaswap-org`,
     },
     plugins: [
         {
@@ -17,13 +17,13 @@ module.exports = {
             options: {
                 bucketName: process.env.AWS_S3_BUCKET || 'NOT_SPECIFIED',
                 protocol: 'https',
-                hostname: 'darumascan.org',
+                hostname: 'darumaswap.org',
                 acl: null
             }
         }, {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {
-                siteUrl: `https://darumascan.org`
+                siteUrl: `https://darumaswap.org`
             }
         }, {
             resolve: `gatsby-source-filesystem`,

@@ -1,7 +1,7 @@
 {
-  "name": "darumascan-org",
+  "name": "darumaswap-org",
   "private": true,
-  "description": "Travel the world and discover all hidden Daruma NFT",
+  "description": "The new generation of decentralised swapping protocol",
   "version": "0.1.0",
   "author": "NegativeHoro",
   "dependencies": {
@@ -45,9 +45,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/darumascan/darumascan-website"
+    "url": "https://github.com/DarumaLabs/darumaswap-org"
   },
   "bugs": {
-    "url": "https://github.com/darumascan/darumascan-website/issues"
+    "url": "https://github.com/DarumaLabs/darumaswap-org/issues"
   }
 }

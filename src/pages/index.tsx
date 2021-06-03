@@ -49,7 +49,7 @@ const StyledTokenData = styled(TokenData)`
 `
 
 const Title = styled.h1`
-    margin: 0 auto 0;
+    margin: 1rem auto 0;
     text-align: center;
     font-size: 6rem;
     font-weight: 600;
@@ -57,8 +57,9 @@ const Title = styled.h1`
     text-shadow: 5px 3px ${({theme}) => theme.black};
 
     ${({theme}) => theme.media.large`
-        font-size: 4.5rem;
-        line-height: 5.5rem;
+        margin-top: 0;
+        font-size: 5.5rem;
+        line-height: 6rem;
     `}
 
     ${({theme}) => theme.media.medium`
@@ -129,7 +130,7 @@ const Subtitle = styled.h2`
 const TitleButtonsWrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
 
     & > * {
         margin: 0 1rem;
@@ -155,7 +156,7 @@ export default function Home() {
         <Layout>
             <Seo
                 title="Home"
-                description="Travel the world and discover all hidden Daruma NFT"
+                description="The new generation of decentralised swapping protocol"
             />
             <BGCard>
                 <CardBGImage />
@@ -165,20 +166,18 @@ export default function Home() {
                     <TitleWrapper>
 
                         <Title>
-                            Discover
+                            Master DeFi with
                             <span> </span>
                             <DarumaTitle>Daruma</DarumaTitle>
-                            <span> </span>
-                            NFT Worldwide
                         </Title>
 
-                        <Subtitle>Travel the world and discover all hidden Daruma NFT</Subtitle>
+                        <Subtitle>The new generation of decentralised swapping protocol</Subtitle>
 
                         <TitleButtonsWrapper>
                             <PrimaryButton
-                                href="https://app.darumascan.org"
+                                href="https://app.darumaswap.org"
                             >
-                                Use Darumascan
+                                Use Darumaswap
                             </PrimaryButton>
                             <SecondaryButton
                                 href="/buy"

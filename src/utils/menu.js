@@ -4,10 +4,10 @@ const menu = [
         sublinks: [
             {
                 name: "Telegram",
-                href: "https://t.me/darumascan"
+                href: "https://t.me/DarumaLabs"
             }, {
                 name: "Twitter",
-                href: "https://twitter.com/darumascan"
+                href: "https://twitter.com/DarumaLabs"
             }
         ]
     }, {
@@ -18,7 +18,7 @@ const menu = [
                 href: "/team"
             }, {
                 name: "Github",
-                href: "https://github.com/darumascan"
+                href: "https://github.com/DarumaLabs"
             }
         ]
     }, {
