@@ -31,10 +31,12 @@ export function colors(darkMode: boolean): Colors {
         black: '#000000',
 
         primary1: '#ff003e',
+        primary2: '#6E44FF',
 
-        gradient1: 'linear-gradient(to right, #CC000C, #FF0A53)',
+        gradient1: 'linear-gradient(to right, #ff003e, #6E44FF)',
 
         bg1: '#0d1114',
+        bg2: '#00000080',
 
         primaryText1: '#ff003e',
 
@@ -61,6 +63,10 @@ const ThemedGlobalStyle = createGlobalStyle`
 
     h2 {
         font-size: 2rem;
+    }
+
+    a {
+        color: ${({theme}) => theme.primaryText1};
     }
 `
 

@@ -5,10 +5,12 @@ export interface Colors {
     black: string,
 
     primary1: string,
+    primary2: string,
 
     gradient1: string,
 
     bg1: string,
+    bg2: string,
 
     primaryText1: string,
 

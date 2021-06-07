@@ -1,7 +1,8 @@
 import React from 'react'
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "../components/header"
+import Header from '../components/header'
+import Footer from '../components/footer'
 import ThemeProvider from '../styles/theme'
 
 import '../styles/layout.css'
@@ -26,6 +27,7 @@ export default function Layout({ children }: LayoutProps) {
         <ThemeProvider>
             <Header siteTitle={data.site.siteMetadata.title} />
             {children}
+            <Footer />
         </ThemeProvider>
     )
 }

@@ -17,3 +17,12 @@ export const CardBGImage = styled.span`
     width: 100%;
     height: 100%;
 `
+
+export const CardRadial = styled.span`
+    position: fixed;
+    background-image: radial-gradient(50% 50% at 50% 50%, ${({theme}) => transparentize(0.95, theme.primary1)}, transparent);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+`

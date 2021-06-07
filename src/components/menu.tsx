@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import { darken } from 'polished'
 
 const MenuTitle = styled.p`
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     margin: 0;
@@ -75,6 +76,7 @@ const MenuWrapper = styled.div`
 `
 
 const StyledLink = styled(Link)`
+    font-family: 'Montserrat', sans-serif;
     color: ${({theme}) => theme.text1};
     text-decoration: none;
     margin: 5px 0;
