@@ -114,7 +114,7 @@ const TitleWrapper = styled.div`
 `
 
 const Subtitle = styled.h2`
-    margin-top: auto;
+    margin-top: 2rem;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
