@@ -359,7 +359,6 @@ const Card = styled(Link)`
     ${({theme}) => theme.media.minMedium`
         &:hover {
             transform: translate(2px, 1px);
-            height: 100%;
         }
     `}
 
