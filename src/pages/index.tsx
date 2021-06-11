@@ -13,6 +13,7 @@ import DarumaSwapIllustration from '../images/darumaswap-illustration.png'
 import IncubatorIcon from '../images/incubator.inline.svg'
 import SwapIcon from '../images/swap.inline.svg'
 import StakingIcon from '../images/staking.inline.svg'
+import AnalyticsIcon from '../images/analytics.inline.svg'
 
 const BGCard = styled.span`
     width: 100vw;
@@ -196,7 +197,7 @@ export default function Home() {
             }, {
                 link: 'https://app.darumaswap.org/#/analytics',
                 title: 'Analytics',
-                icon: <SwapIcon />,
+                icon: <AnalyticsIcon />,
                 description: 'Track the data of any BEP-20 token'
             }
         ]
