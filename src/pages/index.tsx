@@ -10,6 +10,9 @@ import { CardBGImage, CardRadial } from '../components/utils'
 import Katakana from '../images/katakana.inline.svg'
 import { PrimaryButton, SecondaryButton } from '../components/button'
 import DarumaSwapIllustration from '../images/darumaswap-illustration.png'
+import IncubatorIcon from '../images/incubator.inline.svg'
+import SwapIcon from '../images/swap.inline.svg'
+import StakingIcon from '../images/staking.inline.svg'
 
 const BGCard = styled.span`
     width: 100vw;
@@ -153,6 +156,47 @@ const TitleButtonsWrapper = styled.div`
 `
 
 export default function Home() {
+    const blogData: CardsData = {
+        title: 'Last blog posts',
+        cards: [
+            {
+                link: '/',
+                title: 'DarumaSwap',
+                description: 'An AMM with automatic raise of the price floor'
+            }, {
+                link: '/',
+                title: 'DARUMA token',
+                description: 'Stake LP tokens from DarumaSwap and earn DARUMA'
+            }, {
+                link: '/',
+                title: 'Introducing Daruma',
+                description: 'An overview of the concept behind Daruma'
+            },
+        ]
+    }
+
+    const ecosystemData: CardsData = {
+        title: 'A growing ecosystem',
+        cards: [
+            {
+                link: '/',
+                title: 'AMM',
+                icon: <SwapIcon />,
+                description: 'Swap between BEP-20 tokens with the best user friendly application'
+            }, {
+                link: '/',
+                title: 'Staking',
+                icon: <StakingIcon />,
+                description: 'Stake your DARUMA and get a reward on each trade using DarumaSwap'
+            }, {
+                link: '/',
+                title: 'Incubator',
+                icon: <IncubatorIcon />,
+                description: 'An AMM with a programmable raise of the price floor'
+            }
+        ]
+    }
+
     return (
         <Layout>
             <Seo
@@ -194,7 +238,13 @@ export default function Home() {
                 <StyledTokenData />
                 <AppSection />
                 <TokenSection />
-                <BlogSection />
+                <CardsSection data={ecosystemData} primary={false} />
+                <CardsSection data={blogData} primary={true} />
+                <BlogSubtitle>
+                    See more on our
+                    <span> </span>
+                    <Link to='/blog' style={{textDecoration: 'none'}} >blog</Link>
+                </BlogSubtitle>
             </StyledBody>
         </Layout>
     )
@@ -286,31 +336,33 @@ const TokenSection = props => {
     )
 }
 
-const BlogCard = styled(Link)`
+const Card = styled(Link)`
     width: 18rem;
     padding: 0 1rem;
-    height: 8rem;
-    background: ${({active, theme}) => active ? theme.primary1 : theme.bg2};
+    background: ${({active, primary, theme}) => active ? primary ? theme.primary1 : theme.primary2 : theme.bg2};
     border-radius: 8px;
     text-align: center;
     text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
+
+    ${({theme}) => theme.media.minMedium`
+        &:hover {
+            transform: translate(2px, 1px);
+            height: 100%;
+        }
+    `}
 
     & > h3 {
-        color: ${({active, theme}) => active ? theme.text1 : theme.primaryText1};
+        color: ${({active, primary, theme}) => active ? theme.text1 : primary ? theme.primary1 : theme.primary2};
         font-weight: 600;
         font-size: 1.5rem;
         margin: 1rem 0 0;
     }
 
     & > p {
-        margin: 0.5rem 0 0;
+        margin: 0.5rem 0;
         font-size: 1rem;
     }
-`
-
-const BlogSectionTitle = styled(SectionTitle)`
-    font-size: 4rem;
-    text-align: center;
 `
 
 const BlogSubtitle = styled.h3`
@@ -320,11 +372,16 @@ const BlogSubtitle = styled.h3`
     font-weight: 500;
 `
 
-const BlogSectionWrapper = styled(SectionWrapper)`
+const CardsSectionTitle = styled(SectionTitle)`
+    font-size: 4rem;
+    text-align: center;
+`
+
+const CardsSectionWrapper = styled(SectionWrapper)`
     flex-direction: column;
 `
 
-const BlogCardsWrapper = styled.div`
+const CardsWrapper = styled.div`
     display: flex;
     justify-content: space-around;
 
@@ -332,47 +389,48 @@ const BlogCardsWrapper = styled.div`
         flex-direction: column;
         align-items: center;
 
-        & > ${BlogCard} {
+        & > ${Card} {
             margin: 1rem 0;
         }
     `}
 `
 
-const BlogSection = props => {
-    const blogData = [
-        {
-            link: '/',
-            title: 'DarumaSwap',
-            description: 'An AMM with automatic raise of the price floor'
-        }, {
-            link: '/',
-            title: 'DARUMA token',
-            description: 'Stake LP tokens from DarumaSwap and earn DARUMA'
-        }, {
-            link: '/',
-            title: 'Introducing Daruma',
-            description: 'An overview of the concept behind Daruma'
-        },
-    ]
+interface CardsData {
+    title: string,
+    cards: Array<{
+        link: string,
+        title: string,
+        description: string,
+        icon?: ReactNode
+    }>
+}
 
+interface CardsSectionProps {
+    data: CardsData,
+    primary: boolean
+}
+
+const CardsSection = (props: {data: CardsData}) => {
     return (
-        <BlogSectionWrapper>
-            <BlogSectionTitle>Last blog posts</BlogSectionTitle>
-            <BlogCardsWrapper>
+        <CardsSectionWrapper>
+            <CardsSectionTitle>{props.data.title}</CardsSectionTitle>
+            <CardsWrapper>
                 {
-                    blogData.map((data, index) =>
-                        <BlogCard key={index} to={data.link} active={!index} >
-                            <h3>{data.title}</h3>
-                            <p>{data.description}</p>
-                        </BlogCard>
+                    props.data.cards.map((card, index) =>
+                        <Card key={index} to={card.link} active={!index} primary={props.primary} >
+                            <h3>{card.title}</h3>
+                            {!!card.icon &&
+                                React.cloneElement(card.icon, {style: {
+                                    width: '64px',
+                                    height: '64px',
+                                    margin: '0.5rem auto 0'
+                                }})
+                            }
+                            <p>{card.description}</p>
+                        </Card>
                     )
                 }
-            </BlogCardsWrapper>
-            <BlogSubtitle>
-                See more on our
-                <span> </span>
-                <Link to='/blog' style={{textDecoration: 'none'}} >blog</Link>
-            </BlogSubtitle>
-        </BlogSectionWrapper>
+            </CardsWrapper>
+        </CardsSectionWrapper>
     )
 }
