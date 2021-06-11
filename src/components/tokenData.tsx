@@ -87,11 +87,11 @@ export default function TokenData({className}: {
 }) {
     return (
         <StatsWrapper className={className} >
-            <StyledData name="DARUMA Marketcap" >$1B</StyledData>
-            <StyledData name="Total Liquidity" >$620M</StyledData>
+            <StyledData name="DARUMA Marketcap" >$0B</StyledData>
+            <StyledData name="Total Liquidity" >$0M</StyledData>
             <Breakline />
-            <StyledData name="All time trades" >5B</StyledData>
-            <StyledData name="All time volume" >$7B</StyledData>
+            <StyledData name="All time trades" >0B</StyledData>
+            <StyledData name="All time volume" >$0B</StyledData>
         </StatsWrapper>
     )
 }

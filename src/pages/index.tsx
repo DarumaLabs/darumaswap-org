@@ -179,20 +179,25 @@ export default function Home() {
         title: 'A growing ecosystem',
         cards: [
             {
-                link: '/',
+                link: 'https://app.darumaswap.org/#/incubator',
                 title: 'Incubator',
                 icon: <IncubatorIcon />,
                 description: 'An AMM with a programmable raise of the price floor'
             }, {
-                link: '/',
+                link: 'https://app.darumaswap.org/#/stake',
                 title: 'Staking',
                 icon: <StakingIcon />,
                 description: 'Stake your DARUMA and get a reward on each trade using DarumaSwap'
             }, {
-                link: '/',
+                link: 'https://app.darumaswap.org/#/swap',
                 title: 'AMM',
                 icon: <SwapIcon />,
                 description: 'Swap between BEP-20 tokens with the best user friendly application'
+            }, {
+                link: 'https://app.darumaswap.org/#/analytics',
+                title: 'Analytics',
+                icon: <SwapIcon />,
+                description: 'Track the data of any BEP-20 token'
             }
         ]
     }
@@ -306,10 +311,12 @@ const AppSection = props => {
     return (
         <SectionWrapper reverse={true} >
             <div>
-                <SectionTitle>DarumaSwap, the new DeFi innovation</SectionTitle>
+                <SectionTitle>DarumaSwap incubator, the new DeFi innovation</SectionTitle>
                 <SectionText>
-                    Nam eget ligula ut arcu fermentum efficitur. Suspendisse tincidunt molestie nibh sit amet ultrices.
-                    Phasellus consectetur lorem vitae lacus mattis, quis sodales tortor ultrices.
+                    With its incubator, DarumaSwap allows to launch new tokens
+                    without having to take a tax on each transaction for liquidity, marketing or charity funds.
+                    <br />
+                    A token launched on DarumaSwap will consume less gas, and only take a tax at the time of purchase / sale
                 </SectionText>
             </div>
             <AppIllustration src={DarumaSwapIllustration} />
@@ -325,10 +332,12 @@ const TokenSection = props => {
     return (
         <SectionWrapper>
             <div>
-                <SectionTitle>Some explainations about the DARUMA token</SectionTitle>
+                <SectionTitle>DARUMA token, to govern the protocol</SectionTitle>
                 <SectionText>
-                    Nam eget ligula ut arcu fermentum efficitur. Suspendisse tincidunt molestie nibh sit amet ultrices.
-                    Phasellus consectetur lorem vitae lacus mattis, quis sodales tortor ultrices.
+                    Use the DARUMA token to vote for the next features to be released.
+                    <br />
+                    Likewise, the DarumaSwap AMM will take a tax of 0.05% on each trade.
+                    in order to buy DARUMA tokens and send them to the DARUMA staking pool.
                 </SectionText>
             </div>
             <TokenIllustration src={DarumaSwapIllustration} />
@@ -343,6 +352,7 @@ const Card = styled(Link)`
     border-radius: 8px;
     text-align: center;
     text-decoration: none;
+    margin: 0 1rem;
     transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
 
     ${({theme}) => theme.media.minMedium`
