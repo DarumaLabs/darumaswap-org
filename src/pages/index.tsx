@@ -180,9 +180,9 @@ export default function Home() {
         cards: [
             {
                 link: '/',
-                title: 'AMM',
-                icon: <SwapIcon />,
-                description: 'Swap between BEP-20 tokens with the best user friendly application'
+                title: 'Incubator',
+                icon: <IncubatorIcon />,
+                description: 'An AMM with a programmable raise of the price floor'
             }, {
                 link: '/',
                 title: 'Staking',
@@ -190,9 +190,9 @@ export default function Home() {
                 description: 'Stake your DARUMA and get a reward on each trade using DarumaSwap'
             }, {
                 link: '/',
-                title: 'Incubator',
-                icon: <IncubatorIcon />,
-                description: 'An AMM with a programmable raise of the price floor'
+                title: 'AMM',
+                icon: <SwapIcon />,
+                description: 'Swap between BEP-20 tokens with the best user friendly application'
             }
         ]
     }

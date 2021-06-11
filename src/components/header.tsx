@@ -73,7 +73,7 @@ const AppLink = styled(PrimaryButton)`
 `
 
 const StyledDaruma = styled(Daruma)`
-    width: 40px;
+    width: 2.5rem;
 `
 
 const StyledTitle = styled.h2`
