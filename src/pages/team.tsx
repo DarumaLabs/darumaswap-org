@@ -59,10 +59,10 @@ export default function Team() {
             socialIcon: <TwitterIcon />
         }, {
             avatar: AlpagueAvatar,
-            name: 'Alpague',
+            name: 'Macled',
             title: 'Core Developer',
-            socialHandle: '_Alpague',
-            socialLink: 'https://twitter.com/_Alpague',
+            socialHandle: '_Macled',
+            socialLink: 'https://twitter.com/_Macled',
             socialIcon: <TwitterIcon />
         }, {
             avatar: JungleAvatar,
