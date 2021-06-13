@@ -41,6 +41,7 @@ export function colors(darkMode: boolean): Colors {
         primaryText1: '#ff003e',
 
         text1: '#f7f7f7',
+        text2: '#f7f7f780',
     }
 }
 

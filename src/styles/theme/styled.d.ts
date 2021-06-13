@@ -15,6 +15,7 @@ export interface Colors {
     primaryText1: string,
 
     text1: string,
+    text2: string
 }
 
 declare module 'styled-components' {
