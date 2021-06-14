@@ -19,6 +19,10 @@ const StyledBanner = styled.img`
     padding: 0 4rem;
     width: 100%;
     margin: 4rem auto;
+
+    ${({theme}) => theme.media.medium`
+        padding: 0 1rem;
+    `}
 `
 
 const Title = styled.h1`
@@ -30,13 +34,24 @@ const Title = styled.h1`
 `
 
 const MembersWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 12rem);
+    justify-content: space-between;
+    grid-gap: 2rem;
     box-sizing: border-box;
     max-width: 1200px;
     padding: 0 4rem;
-    display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin: 4rem auto 0;
+
+    ${({theme}) => theme.media.medium`
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        padding: 0 1rem;
+    `}
+
+    ${({theme}) => theme.media.small`
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    `}
 `
 
 interface Member {
@@ -94,20 +109,17 @@ export default function Team() {
 }
 
 const StyledMemberCard = styled.div`
-    margin: 1rem;
-
     & svg {
         fill: ${({theme}) => theme.text2}
     }
 `
 
 const MemberAvatar = styled.img`
-    width: 12rem;
-    height: 12rem;
+    width: 100%;
 `
 
 const MemberName = styled.h4`
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 400;
     margin: 0.75rem 0 0;
     line-height: 1;
@@ -126,6 +138,11 @@ const MemberSocialLink = styled(Link)`
     margin: 0 0 0 1rem;
     font-weight: 600;
     text-decoration: none;
+
+    ${({theme}) => theme.media.small`
+        font-size: 0.875rem
+        margin: 0 0 0 0.5rem;
+    `}
 `
 
 const MemberCard = (props: {member: Member}) => {
@@ -137,8 +154,8 @@ const MemberCard = (props: {member: Member}) => {
             <div style={{display: 'flex', alignItems: 'center', marginTop: '0.75rem'}} >
                 {!!props.member.socialIcon &&
                     React.cloneElement(props.member.socialIcon, {style: {
-                        width: '24px',
-                        height: '24px'
+                        minWidth: '1.25rem',
+                        height: '1.25rem'
                     }})
                 }
                 <MemberSocialLink to={props.member.socialLink} >@{props.member.socialHandle}</MemberSocialLink>
