@@ -14,6 +14,9 @@ const menu = [
         name: "About",
         sublinks: [
             {
+                name: "Blog",
+                href: "/blog"
+            }, {
                 name: "Meet Team",
                 href: "/team"
             }, {

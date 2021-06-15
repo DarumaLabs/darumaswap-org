@@ -31,6 +31,12 @@ module.exports = {
                 name: `images`,
                 path: `${__dirname}/src/images`,
             },
+        }, {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `blog`,
+                path: `${__dirname}/src/pages/blog`,
+            },
         },
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-image`,
@@ -44,6 +50,14 @@ module.exports = {
                     include: /\.inline\.svg$/
                 }
             }
+        }, {
+            resolve: `gatsby-plugin-mdx`,
+            options: {
+                extensions: [`.mdx`, `.md`],
+                defaultLayouts: {
+                    blog: require.resolve(`./src/layouts/blogPost.tsx`),
+                },
+            },
         }, {
             resolve: `gatsby-plugin-manifest`,
             options: {
