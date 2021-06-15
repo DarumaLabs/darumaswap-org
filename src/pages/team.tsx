@@ -9,7 +9,7 @@ import TwitterIcon from '../images/twitter.inline.svg'
 import InstagramIcon from '../images/instagram.inline.svg'
 
 import NegativeHoroAvatar from '../images/negative-horo.png'
-import AlpagueAvatar from '../images/alpague.png'
+import AlpagueAvatar from '../images/macled.png'
 import JungleAvatar from '../images/jungle.png'
 import Lit0neAvatar from '../images/lit0ne.png'
 
@@ -124,6 +124,7 @@ const StyledMemberCard = styled.div`
 
 const MemberAvatar = styled.img`
     width: 100%;
+    border-radius: 0.5rem;
 `
 
 const MemberName = styled.h4`
