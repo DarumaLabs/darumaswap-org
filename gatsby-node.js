@@ -18,7 +18,7 @@ exports.onCreateNode = function({ node, actions, getNode }) {
             actions.createNodeField({
                 name: 'slug',
                 node,
-                value: `blog${value.replace(/\d+-/g, ``)}`
+                value: `/blog${value.replace(/\d+-/g, ``)}`
             })
         }
     }

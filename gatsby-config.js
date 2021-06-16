@@ -41,8 +41,10 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-image`,
         `gatsby-plugin-styled-components`,
+        `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        `gatsby-background-image`,
         {
             resolve: 'gatsby-plugin-react-svg',
             options: {
@@ -57,6 +59,14 @@ module.exports = {
                 defaultLayouts: {
                     blog: require.resolve(`./src/layouts/blogPost.tsx`),
                 },
+                gatsbyRemarkPlugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            maxWidth: 1200,
+                        },
+                    },
+                ],
             },
         }, {
             resolve: `gatsby-plugin-manifest`,

@@ -1,0 +1,107 @@
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Link } from 'gatsby'
+import Img, { FluidObject } from 'gatsby-image'
+import BackgroundImage from 'gatsby-background-image'
+import { transparentize } from 'polished'
+
+const StyledCard = styled(Link)`
+    display: flex;
+    flex-wrap: no-wrap;
+    background: ${({theme}) => theme.bg2};
+    border-radius: 0.75rem;
+    border: 2px solid ${({theme}) => theme.bg2};
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
+
+    &:hover {
+        transform: translate(4px, 2px);
+    }
+
+    ${({large}) => large || css`
+        flex-direction: column;
+        border-width: 1px;
+
+        & ${CardBanner} {
+            height: 14.3rem;
+        }
+
+        & ${CardTitleWrapper} {
+            width: 100%;
+        }
+
+        & ${CardTitle} {
+            font-size: 1.5rem;
+            margin: 0.5rem 1rem 0;
+        }
+        & ${CardDescription} {
+            font-size: 1rem;
+            margin: 1rem;
+        }
+    `}
+`
+
+const CardBanner = styled(BackgroundImage)`
+    width: 100%;
+    height: 27rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.75rem;
+    overflow: hidden;
+`
+
+const CardTitleWrapper = styled.div`
+    width: 30rem;
+    flex-shrink: 0;
+`
+
+const CardTitle = styled.h2`
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 1rem 2rem 0;
+    line-height: 1.3;
+`
+
+const CardDate = styled.p`
+    color: ${({theme}) => theme.text2};
+    margin: 1rem 2rem 0;
+`
+
+const CardDescription = styled.p`
+    margin: 1rem 2rem 0;
+    font-size: 1.5rem;
+    line-height: 1.3;
+`
+
+interface BlogCardProps {
+    large: boolean,
+    data: {
+        frontmatter: {
+            title: string,
+            date: string,
+            description: string,
+            banner: {
+                childImageSharp: {
+                    fluid: FluidObject
+                }
+            }
+        },
+        fields: {
+            slug: string
+        }
+    }
+}
+
+export default function BlogCard(props: BlogCardProps) {
+    console.log(props.data.frontmatter.banner)
+    return (
+        <StyledCard to={props.data.fields.slug} large={props.large} >
+            <CardBanner fluid={props.data.frontmatter.banner.childImageSharp.fluid} />
+            <CardTitleWrapper>
+                <CardDate>{props.data.frontmatter.date}</CardDate>
+                <CardTitle>{props.data.frontmatter.title}</CardTitle>
+                <CardDescription>{props.data.frontmatter.description}</CardDescription>
+            </CardTitleWrapper>
+        </StyledCard>
+    )
+}
