@@ -355,33 +355,48 @@ const TokenSection = props => {
     )
 }
 
+const CardsWrapper = styled.div`
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 4rem;
+`
+
 const Card = styled(Link)`
-    width: 18rem;
+    max-width: 22.5rem;
+    flex-grow: 1;
+    flex-basis: 0;
     padding: 0 1rem;
-    background: ${({active, primary, theme}) => active ? primary ? theme.primary1 : theme.primary2 : theme.bg2};
+    background: ${({active, theme}) => active ? theme.primary2 : theme.bg2};
     border-radius: 8px;
     text-align: center;
     text-decoration: none;
-    margin: 0 1rem;
     transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
 
-    ${({theme}) => theme.media.minMedium`
-        &:hover {
-            transform: translate(2px, 1px);
-        }
-    `}
-
     & > h3 {
-        color: ${({active, primary, theme}) => active ? theme.text1 : primary ? theme.primary1 : theme.primary2};
+        color: ${({active, theme}) => active ? theme.text1 : theme.primary2};
         font-weight: 600;
         font-size: 1.5rem;
-        margin: 1rem 0 0;
     }
 
     & > p {
-        margin: 0.5rem 0 1rem;
         font-size: 1rem;
     }
+
+    &:hover {
+        transform: translate(2px, 1px);
+    }
+
+    ${({theme}) => theme.media.medium`
+        flex-basis: 25%;
+        flex-grow: 0;
+    `}
+
+    ${({theme}) => theme.media.small`
+        flex-basis: 40%;
+        flex-grow: 1;
+    `}
 `
 
 const CardsSectionTitle = styled(SectionTitle)`
@@ -394,21 +409,6 @@ const CardsSectionWrapper = styled(SectionWrapper)`
     flex-direction: column;
 `
 
-const CardsWrapper = styled.div`
-    display: flex;
-    justify-content: space-around;
-    margin-top: 4rem;
-
-    ${({theme}) => theme.media.large`
-        flex-direction: column;
-        align-items: center;
-
-        & > ${Card} {
-            margin: 1rem 0;
-        }
-    `}
-`
-
 interface CardsData {
     title: string,
     cards: Array<{
@@ -419,11 +419,6 @@ interface CardsData {
     }>
 }
 
-interface CardsSectionProps {
-    data: CardsData,
-    primary: boolean
-}
-
 const CardsSection = (props: {data: CardsData}) => {
     return (
         <CardsSectionWrapper>
@@ -431,7 +426,7 @@ const CardsSection = (props: {data: CardsData}) => {
             <CardsWrapper>
                 {
                     props.data.cards.map((card, index) =>
-                        <Card key={index} to={card.link} active={!index} primary={props.primary} >
+                        <Card key={index} to={card.link} active={!index} >
                             <h3>{card.title}</h3>
                             {!!card.icon &&
                                 React.cloneElement(card.icon, {style: {
