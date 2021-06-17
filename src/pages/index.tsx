@@ -1,10 +1,11 @@
 import * as React from "react"
 import styled from 'styled-components'
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../layouts"
 import Seo from "../components/seo"
+import BlogCardsGrid, { BlogCardData } from '../components/blogCard'
 import TokenData from '../components/tokenData'
 import { CardBGImage, CardRadial } from '../components/utils'
 import Katakana from '../images/katakana.inline.svg'
@@ -157,24 +158,37 @@ const TitleButtonsWrapper = styled.div`
 `
 
 export default function Home() {
-    const blogData: CardsData = {
-        title: 'Last blog posts',
-        cards: [
-            {
-                link: '/',
-                title: 'DarumaSwap',
-                description: 'An AMM with automatic raise of the price floor'
-            }, {
-                link: '/',
-                title: 'DARUMA token',
-                description: 'Stake LP tokens from DarumaSwap and earn DARUMA'
-            }, {
-                link: '/',
-                title: 'Introducing Daruma',
-                description: 'An overview of the concept behind Daruma'
-            },
-        ]
-    }
+    const blogData = useStaticQuery(graphql`
+        {
+            allMdx(
+                filter: {fileAbsolutePath: {regex: "/blog/"}},
+                sort: {order: DESC, fields: frontmatter___date},
+                limit: 3
+            ) {
+                edges {
+                    node {
+                        frontmatter {
+                            title
+                            date
+                            description
+                            banner {
+                                childImageSharp {
+                                    fluid(maxWidth: 800) {
+                                        ...GatsbyImageSharpFluid
+                                    }
+                                }
+                            }
+                        }
+                        fields {
+                            slug
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    const blogPosts = blogData.allMdx.edges
 
     const ecosystemData: CardsData = {
         title: 'A growing ecosystem',
@@ -245,12 +259,7 @@ export default function Home() {
                 <AppSection />
                 <TokenSection />
                 <CardsSection data={ecosystemData} primary={false} />
-                <CardsSection data={blogData} primary={true} />
-                <BlogSubtitle>
-                    See more on our
-                    <span> </span>
-                    <Link to='/blog' style={{textDecoration: 'none'}} >blog</Link>
-                </BlogSubtitle>
+                <BlogCardsSection data={blogPosts} />
             </StyledBody>
         </Layout>
     )
@@ -375,16 +384,10 @@ const Card = styled(Link)`
     }
 `
 
-const BlogSubtitle = styled.h3`
-    margin: 2rem 0 0;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 500;
-`
-
 const CardsSectionTitle = styled(SectionTitle)`
     font-size: 4rem;
     text-align: center;
+    margin: 0;
 `
 
 const CardsSectionWrapper = styled(SectionWrapper)`
@@ -394,6 +397,7 @@ const CardsSectionWrapper = styled(SectionWrapper)`
 const CardsWrapper = styled.div`
     display: flex;
     justify-content: space-around;
+    margin-top: 4rem;
 
     ${({theme}) => theme.media.large`
         flex-direction: column;
@@ -441,6 +445,27 @@ const CardsSection = (props: {data: CardsData}) => {
                     )
                 }
             </CardsWrapper>
+        </CardsSectionWrapper>
+    )
+}
+
+const BlogSubtitle = styled.h3`
+    margin: 2rem 0 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+`
+
+const BlogCardsSection = (props: {data: Array<BlogCardData>}) => {
+    return (
+        <CardsSectionWrapper>
+            <CardsSectionTitle>Last blog posts</CardsSectionTitle>
+            <BlogCardsGrid data={props.data} />
+            <BlogSubtitle>
+                See more on our
+                <span> </span>
+                <Link to='/blog' style={{textDecoration: 'none'}} >blog</Link>
+            </BlogSubtitle>
         </CardsSectionWrapper>
     )
 }

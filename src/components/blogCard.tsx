@@ -5,6 +5,31 @@ import Img, { FluidObject } from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
 import { transparentize } from 'polished'
 
+const BlogCardsWrapper = styled.div`
+    width: 100%;
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 4rem;
+`
+
+interface BlogCardsSectionProps {
+    large: boolean,
+    data: Array<BlogCardData>
+}
+
+export default function BlogCardsSection(props: BlogCardsSectionProps) {
+    return (
+        <BlogCardsWrapper>
+            {
+                props.data.map((post, index) =>
+                    <BlogCard key={index} large={index === 0 && props.large} data={post.node} />
+                )
+            }
+        </BlogCardsWrapper>
+    )
+}
+
 const StyledCard = styled(Link)`
     display: flex;
     flex-wrap: no-wrap;
@@ -13,6 +38,7 @@ const StyledCard = styled(Link)`
     border: 2px solid ${({theme}) => theme.bg2};
     text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
+    grid-column: 1 / -1;
 
     &:hover {
         transform: translate(4px, 2px);
@@ -21,6 +47,7 @@ const StyledCard = styled(Link)`
     ${({large}) => large || css`
         flex-direction: column;
         border-width: 1px;
+        grid-column: auto;
 
         & ${CardBanner} {
             height: 14.3rem;
@@ -73,26 +100,28 @@ const CardDescription = styled.p`
     line-height: 1.3;
 `
 
-interface BlogCardProps {
-    large: boolean,
-    data: {
-        frontmatter: {
-            title: string,
-            date: string,
-            description: string,
-            banner: {
-                childImageSharp: {
-                    fluid: FluidObject
-                }
+interface BlogCardData {
+    frontmatter: {
+        title: string,
+        date: string,
+        description: string,
+        banner: {
+            childImageSharp: {
+                fluid: FluidObject
             }
-        },
-        fields: {
-            slug: string
         }
+    },
+    fields: {
+        slug: string
     }
 }
 
-export default function BlogCard(props: BlogCardProps) {
+interface BlogCardProps {
+    large: boolean,
+    data: BlogCardData
+}
+
+function BlogCard(props: BlogCardProps) {
     console.log(props.data.frontmatter.banner)
     return (
         <StyledCard to={props.data.fields.slug} large={props.large} >
@@ -105,3 +134,5 @@ export default function BlogCard(props: BlogCardProps) {
         </StyledCard>
     )
 }
+
+export { BlogCardData }
