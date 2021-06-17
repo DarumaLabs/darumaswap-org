@@ -12,6 +12,15 @@ const BlogSection = styled.section`
     max-width: 1328px;
     padding: 0 4rem;
     width: 100%;
+
+    ${({theme}) => theme.media.large`
+        width: fit-content;
+    `}
+
+    ${({theme}) => theme.media.small`
+        padding: 0 1rem;
+        margin: 4rem auto 0;
+    `}
 `
 
 const Title = styled.h1`

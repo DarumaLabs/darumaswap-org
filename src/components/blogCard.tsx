@@ -11,6 +11,21 @@ const BlogCardsWrapper = styled.div`
     gap: 4rem;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 4rem;
+    box-sizing: border-box;
+
+    ${({theme}) => theme.media.large`
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+    `}
+
+    ${({theme}) => theme.media.small`
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        gap: 2rem;
+    `}
 `
 
 interface BlogCardsSectionProps {
@@ -44,28 +59,33 @@ const StyledCard = styled(Link)`
         transform: translate(4px, 2px);
     }
 
-    ${({large}) => large || css`
-        flex-direction: column;
-        border-width: 1px;
-        grid-column: auto;
+    ${({large, theme}) => {
+        const themeCssFunction = large ? theme.media.large : css
 
-        & ${CardBanner} {
-            height: 14.3rem;
-        }
+        return themeCssFunction`
+            flex-direction: column;
+            border-width: 1px;
+            grid-column: auto;
+            max-width: 22.5rem;
 
-        & ${CardTitleWrapper} {
-            width: 100%;
-        }
+            & ${CardBanner} {
+                height: 14.3rem;
+            }
 
-        & ${CardTitle} {
-            font-size: 1.5rem;
-            margin: 0.5rem 1rem 0;
-        }
-        & ${CardDescription} {
-            font-size: 1rem;
-            margin: 1rem;
-        }
-    `}
+            & ${CardTitleWrapper} {
+                width: 100%;
+            }
+
+            & ${CardTitle} {
+                font-size: 1.5rem;
+                margin: 0.5rem 1rem 0;
+            }
+            & ${CardDescription} {
+                font-size: 1rem;
+                margin: 1rem;
+            }
+        `
+    }}
 `
 
 const CardBanner = styled(BackgroundImage)`
