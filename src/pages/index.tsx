@@ -173,7 +173,7 @@ export default function Home() {
                             description
                             banner {
                                 childImageSharp {
-                                    fluid(maxWidth: 800) {
+                                    fluid(quality: 100, maxWidth: 800) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }

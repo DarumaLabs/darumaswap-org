@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
-import Img, { FluidObject } from 'gatsby-image'
+import { FluidObject } from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
 import { transparentize } from 'polished'
 
