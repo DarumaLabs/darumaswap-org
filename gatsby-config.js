@@ -44,6 +44,7 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        `gatsby-remark-images`,
         `gatsby-background-image`,
         {
             resolve: 'gatsby-plugin-react-svg',
@@ -67,8 +68,11 @@ module.exports = {
                         },
                     },
                 ],
+                plugins: [ { resolve: `gatsby-remark-images` } ],
             },
-        }, {
+        },
+        'gatsby-remark-reading-time',
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: `gatsby-starter-default`,
