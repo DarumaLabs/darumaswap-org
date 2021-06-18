@@ -9,8 +9,9 @@ import TwitterIcon from '../images/twitter.inline.svg'
 import InstagramIcon from '../images/instagram.inline.svg'
 
 import NegativeHoroAvatar from '../images/negative-horo.png'
-import AlpagueAvatar from '../images/alpague.png'
+import AlpagueAvatar from '../images/macled.png'
 import JungleAvatar from '../images/jungle.png'
+import Lit0neAvatar from '../images/lit0ne.png'
 
 const StyledBanner = styled.img`
     display: block;
@@ -86,6 +87,13 @@ export default function Team() {
             socialHandle: 'jungleraiddog',
             socialLink: 'https://instagram.com/jungleraiddog',
             socialIcon: <InstagramIcon />
+        }, {
+            avatar: Lit0neAvatar,
+            name: 'Lit0ne',
+            title: 'Security Lead',
+            socialHandle: 'c0rtezhill',
+            socialLink: 'https://twitter.com/c0rtezhill',
+            socialIcon: <TwitterIcon />
         }
     ]
 
@@ -116,6 +124,7 @@ const StyledMemberCard = styled.div`
 
 const MemberAvatar = styled.img`
     width: 100%;
+    border-radius: 0.5rem;
 `
 
 const MemberName = styled.h4`
@@ -135,12 +144,12 @@ const MemberTitle = styled.p`
 const MemberSocialLink = styled(Link)`
     color: ${({theme}) => theme.text2};
     font-size: 1rem;
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 0.75rem;
     font-weight: 600;
     text-decoration: none;
 
     ${({theme}) => theme.media.small`
-        font-size: 0.875rem
+        font-size: 0.875rem;
         margin: 0 0 0 0.5rem;
     `}
 `
