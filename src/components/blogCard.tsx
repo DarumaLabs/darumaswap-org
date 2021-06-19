@@ -68,6 +68,10 @@ const StyledCard = styled(Link)`
             grid-column: auto;
             max-width: 22.5rem;
 
+            &:hover {
+                transform: translate(2px, 1px);
+            }
+
             & ${CardBanner} {
                 height: 14.3rem;
             }
