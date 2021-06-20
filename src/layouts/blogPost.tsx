@@ -14,14 +14,29 @@ import Caret from '../images/caret.inline.svg'
 const StyledBody = styled.section`
     max-width: 1200px;
     padding: 0 4rem;
+    margin: 2rem auto 0;
+
+    ${({theme}) => theme.media.small`
+        padding: 0 1rem;
+    `}
+`
+
+const BlogBannerWrapper = styled.div`
+    max-width: 1200px;
+    height: 32rem;
     margin: 4rem auto 0;
+    padding: 0 4rem;
+
+    ${({theme}) => theme.media.large`
+        padding: 0;
+        height: 26rem;
+        margin-top: 0;
+    `}
 `
 
 const BlogBanner = styled(BackgroundImage)`
     width: 100%;
-    height: 32rem;
-    background-size: cover;
-    background-position: center;
+    height: 100%;
 `
 
 const BlogTitle = styled.h1`
@@ -29,12 +44,26 @@ const BlogTitle = styled.h1`
     font-weight: 600;
     line-height: 1.2;
     margin: 1rem 0 0;
+
+    ${({theme}) => theme.media.small`
+        font-size: 3rem;
+    `}
+
+    ${({theme}) => theme.media.extraSmall`
+        font-size: 2.5rem;
+    `}
 `
 
 const BlogContent = styled.div`
     margin: 2rem 2rem 0;
     display: flex;
     justify-content: space-between;
+    gap: 2rem;
+
+    ${({theme}) => theme.media.medium`
+        margin-left: 0;
+        margin-right: 0;
+    `}
 `
 
 const BlogBody = styled.div`
@@ -94,12 +123,27 @@ const BlogBody = styled.div`
     & h1:hover .anchor {
         opacity: 1;
     }
+
+    ${({theme}) => theme.media.medium`
+        max-width: none;
+    `}
+
+    ${({theme}) => theme.media.small`
+        & .anchor {
+            display: none;
+        }
+    `}
+
+    ${({theme}) => theme.media.extraSmall`
+        & h1 {
+            font-size: 1.5rem;
+        }
+    `}
 `
 
 const Breadcrumbs = styled.div`
     display: flex;
     align-items: center;
-    margin: 2rem 0 0;
 
     & > a {
         color: ${({theme}) => theme.text2};
@@ -178,8 +222,10 @@ export default function BlogPost({children, pageContext, path}: BlogPostProps) {
             <Seo
                 title={post.frontmatter.title}
             />
-            <StyledBody>
+            <BlogBannerWrapper>
                 <BlogBanner fluid={post.frontmatter.banner.childImageSharp.fluid} />
+            </BlogBannerWrapper>
+            <StyledBody>
                 <Breadcrumbs>
                     <Link to='/' >Home</Link>
                     <Caret height="0.75rem" />

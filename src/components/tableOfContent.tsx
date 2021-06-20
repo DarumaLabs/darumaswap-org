@@ -21,12 +21,17 @@ const StyledTableOfContent = styled.nav`
     height: fit-content;
     padding-left: 1rem;
     border-left: 1px solid ${({theme}) => transparentize(0.9, theme.text1)};
+    flex-shrink: 0;
 
     & > h3 {
         letter-spacing: 1.1px;
         font-weight: 500;
         margin: 0 0 1rem;
     }
+
+    ${({theme}) => theme.media.medium`
+        display: none;
+    `}
 `
 
 const StyledHeadingLink = styled(Link)`
