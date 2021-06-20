@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import Img from "gatsby-image"
 
 import Layout from "../layouts"
 import Seo from "../components/seo"
@@ -10,7 +10,6 @@ import TokenData from '../components/tokenData'
 import { CardBGImage, CardRadial } from '../components/utils'
 import Katakana from '../images/katakana.inline.svg'
 import { PrimaryButton, SecondaryButton } from '../components/button'
-import DarumaSwapIllustration from '../images/darumaswap-illustration.png'
 import IncubatorIcon from '../images/incubator.inline.svg'
 import SwapIcon from '../images/swap.inline.svg'
 import StakingIcon from '../images/staking.inline.svg'
@@ -158,7 +157,7 @@ const TitleButtonsWrapper = styled.div`
 `
 
 export default function Home() {
-    const blogData = useStaticQuery(graphql`
+    const data = useStaticQuery(graphql`
         {
             allMdx(
                 filter: {fileAbsolutePath: {regex: "/blog/"}},
@@ -184,11 +183,18 @@ export default function Home() {
                         }
                     }
                 }
+            },
+            darumaswapIllustration: file(relativePath: { eq: "darumaswap-illustration.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
             }
         }
     `)
 
-    const blogPosts = blogData.allMdx.edges
+    const blogPosts = data.allMdx.edges
 
     const ecosystemData: CardsData = {
         title: 'A growing ecosystem',
@@ -256,8 +262,8 @@ export default function Home() {
                     <StyledKatakana />
                 </TitleSection>
                 <StyledTokenData />
-                <AppSection />
-                <TokenSection />
+                <AppSection data={data} />
+                <TokenSection data={data} />
                 <CardsSection data={ecosystemData} primary={false} />
                 <BlogCardsSection data={blogPosts} />
             </StyledBody>
@@ -270,6 +276,8 @@ const SectionWrapper = styled.section`
     max-width: 1200px;
     display: flex;
     flex-direction: ${({reverse}) => reverse ? 'row-reverse' : 'row'};
+    justify-content: space-between;
+    gap: 4rem;
     padding: 0 4rem;
 
     ${({theme}) => theme.media.medium`
@@ -294,10 +302,11 @@ const SectionTitle = styled.h1`
     `}
 `
 
-const SectionIllustration = styled.img`
-    width: 300px;
+const SectionIllustration = styled(Img)`
+    width: 16rem;
     align-self: center;
     border-radius: 8px;
+    flex-shrink: 0;
 
     ${({theme}) => theme.media.medium`
         margin: 0 !important;
@@ -305,7 +314,6 @@ const SectionIllustration = styled.img`
 `
 
 const AppIllustration = styled(SectionIllustration)`
-    margin-right: 4rem;
 `
 
 const SectionText = styled.p`
@@ -329,14 +337,10 @@ const AppSection = props => {
                     A token launched on DarumaSwap will consume less gas, and only take a tax at the time of purchase / sale
                 </SectionText>
             </div>
-            <AppIllustration src={DarumaSwapIllustration} />
+            <SectionIllustration fluid={props.data.darumaswapIllustration.childImageSharp.fluid} />
         </SectionWrapper>
     )
 }
-
-const TokenIllustration = styled(SectionIllustration)`
-    margin-left: 4rem;
-`
 
 const TokenSection = props => {
     return (
@@ -350,7 +354,7 @@ const TokenSection = props => {
                     in order to buy DARUMA tokens and send them to the DARUMA staking pool.
                 </SectionText>
             </div>
-            <TokenIllustration src={DarumaSwapIllustration} />
+            <SectionIllustration fluid={props.data.darumaswapIllustration.childImageSharp.fluid} />
         </SectionWrapper>
     )
 }

@@ -1,25 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
+import { Link, graphql, useStaticQuery } from 'gatsby'
+import Img, { FluidObject } from 'gatsby-image'
 
 import Layout from "../layouts"
 import Seo from "../components/seo"
-import TeamBanner from '../images/team-banner.png'
 import TwitterIcon from '../images/twitter.inline.svg'
 import InstagramIcon from '../images/instagram.inline.svg'
 
-import NegativeHoroAvatar from '../images/negative-horo.png'
-import AlpagueAvatar from '../images/macled.png'
-import JungleAvatar from '../images/jungle.png'
-import Lit0neAvatar from '../images/lit0ne.png'
-
-const StyledBanner = styled.img`
+const StyledBanner = styled(Img)`
     display: block;
     box-sizing: border-box;
     max-width: 1200px;
     padding: 0 4rem;
     width: 100%;
     margin: 4rem auto;
+    border-radius: 0.5rem;
 
     ${({theme}) => theme.media.medium`
         padding: 0 1rem;
@@ -56,7 +52,7 @@ const MembersWrapper = styled.div`
 `
 
 interface Member {
-    avatar: string,
+    avatar: FluidObject,
     name: string,
     title: string,
     socialHandle: string,
@@ -65,30 +61,66 @@ interface Member {
 }
 
 export default function Team() {
+    const data = useStaticQuery(graphql`
+        {
+            negativeHoroAvatar: file(relativePath: { eq: "negative-horo.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }, macledAvatar: file(relativePath: { eq: "macled.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }, jungleAvatar: file(relativePath: { eq: "jungle.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }, lit0neAvatar: file(relativePath: { eq: "lit0ne.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }, teamBanner: file(relativePath: { eq: "team-banner.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 1200) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
+    `)
+
     const teamMembers: Array<Member> = [
         {
-            avatar: NegativeHoroAvatar,
+            avatar: data.negativeHoroAvatar.childImageSharp.fluid,
             name: 'NegativeHoro',
             title: 'Founder',
             socialHandle: '0xNegativeHoro',
             socialLink: 'https://twitter.com/0xNegativeHoro',
             socialIcon: <TwitterIcon />
         }, {
-            avatar: AlpagueAvatar,
+            avatar: data.macledAvatar.childImageSharp.fluid,
             name: 'Macled',
             title: 'Core Developer',
             socialHandle: '_Macled',
             socialLink: 'https://twitter.com/_Macled',
             socialIcon: <TwitterIcon />
         }, {
-            avatar: JungleAvatar,
+            avatar: data.jungleAvatar.childImageSharp.fluid,
             name: 'Jungle',
             title: 'Graphic Designer',
             socialHandle: 'jungleraiddog',
             socialLink: 'https://instagram.com/jungleraiddog',
             socialIcon: <InstagramIcon />
         }, {
-            avatar: Lit0neAvatar,
+            avatar: data.lit0neAvatar.childImageSharp.fluid,
             name: 'Lit0ne',
             title: 'Security Lead',
             socialHandle: 'c0rtezhill',
@@ -103,7 +135,7 @@ export default function Team() {
                 title="Team"
                 description="Meet the team behind DarumaSwap"
             />
-            <StyledBanner src={TeamBanner} />
+            <StyledBanner fluid={data.teamBanner.childImageSharp.fluid} />
             <Title>Meet the Team</Title>
             <MembersWrapper>
                 {
@@ -122,7 +154,7 @@ const StyledMemberCard = styled.div`
     }
 `
 
-const MemberAvatar = styled.img`
+const MemberAvatar = styled(Img)`
     width: 100%;
     border-radius: 0.5rem;
 `
@@ -157,7 +189,7 @@ const MemberSocialLink = styled(Link)`
 const MemberCard = (props: {member: Member}) => {
     return (
         <StyledMemberCard>
-            <MemberAvatar src={props.member.avatar} />
+            <MemberAvatar fluid={props.member.avatar} />
             <MemberName>{props.member.name}</MemberName>
             <MemberTitle>{props.member.title}</MemberTitle>
             <div style={{display: 'flex', alignItems: 'center', marginTop: '0.75rem'}} >
