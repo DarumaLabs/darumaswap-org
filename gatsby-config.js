@@ -61,6 +61,7 @@ module.exports = {
                     blog: require.resolve(`./src/layouts/blogPost.tsx`),
                 },
                 gatsbyRemarkPlugins: [
+                    `gatsby-remark-autolink-headers`,
                     {
                         resolve: `gatsby-remark-images`,
                         options: {
