@@ -10,7 +10,7 @@ import TokenData from '../components/tokenData'
 import { CardBGImage, CardRadial } from '../components/utils'
 import Katakana from '../images/katakana.inline.svg'
 import { PrimaryButton, SecondaryButton } from '../components/button'
-import IncubatorIcon from '../images/incubator.inline.svg'
+import LiquidityIcon from '../images/liquidity.inline.svg'
 import SwapIcon from '../images/swap.inline.svg'
 import StakingIcon from '../images/staking.inline.svg'
 import AnalyticsIcon from '../images/analytics.inline.svg'
@@ -200,25 +200,25 @@ export default function Home() {
         title: 'A growing ecosystem',
         cards: [
             {
-                link: 'https://app.darumaswap.org/#/incubator',
-                title: 'Incubator',
-                icon: <IncubatorIcon />,
-                description: 'An AMM with a programmable raise of the price floor'
+                link: 'https://app.darumaswap.org/#/liquidity',
+                title: 'Adaptive liquidity',
+                icon: <LiquidityIcon />,
+                description: 'An exchange with a programmable raise of the price floor'
             }, {
                 link: 'https://app.darumaswap.org/#/stake',
                 title: 'Staking',
                 icon: <StakingIcon />,
-                description: 'Stake your DARUMA and get a reward on each trade using DarumaSwap'
+                description: 'Stake your DARUMA and get a reward on each DarumaSwap trade'
             }, {
                 link: 'https://app.darumaswap.org/#/swap',
                 title: 'AMM',
                 icon: <SwapIcon />,
-                description: 'Swap between BEP-20 tokens with the best user friendly application'
+                description: 'Swap between ERC-20 tokens with the best user friendly application'
             }, {
                 link: 'https://app.darumaswap.org/#/analytics',
                 title: 'Analytics',
                 icon: <AnalyticsIcon />,
-                description: 'Track the data of any BEP-20 token'
+                description: 'Track the data of any ERC-20 token with liquidity on DarumaSwap'
             }
         ]
     }
@@ -252,9 +252,9 @@ export default function Home() {
                                 Use Darumaswap
                             </PrimaryButton>
                             <SecondaryButton
-                                href="/buy"
+                                href="/docs"
                             >
-                                How to buy
+                                Documentation
                             </SecondaryButton>
                         </TitleButtonsWrapper>
 
@@ -329,12 +329,14 @@ const AppSection = props => {
     return (
         <SectionWrapper reverse={true} >
             <div>
-                <SectionTitle>DarumaSwap incubator, the new DeFi innovation</SectionTitle>
+                <SectionTitle>DarumaSwap adaptive liquidity, the new DeFi innovation</SectionTitle>
                 <SectionText>
-                    With its incubator, DarumaSwap allows to launch new tokens
-                    without having to take a tax on each transaction for liquidity, marketing or charity funds.
+                    With its adaptive liquidity tax, DarumaSwap allows new projects
+                    to launch their token without having to care about liquidity.
                     <br />
-                    A token launched on DarumaSwap will consume less gas, and only take a tax at the time of purchase / sale
+                    A token launched on DarumaSwap won't consume much gas,
+                    and only take a tax at the time of purchase / sale,
+                    unlike a deflationary token.
                 </SectionText>
             </div>
             <SectionIllustration fluid={props.data.darumaswapIllustration.childImageSharp.fluid} />
@@ -348,9 +350,9 @@ const TokenSection = props => {
             <div>
                 <SectionTitle>DARUMA token, to govern the protocol</SectionTitle>
                 <SectionText>
-                    Use the DARUMA token to vote for the next features to be released.
+                    Stake DarumaSwap liquidity tokens and earn DARUMA
                     <br />
-                    Likewise, the DarumaSwap AMM will take a tax of 0.05% on each trade.
+                    Likewise, the DarumaSwap exchange will take a tax of 0.05% on each trade.
                     in order to buy DARUMA tokens and send them to the DARUMA staking pool.
                 </SectionText>
             </div>
@@ -372,14 +374,14 @@ const Card = styled(Link)`
     flex-grow: 1;
     flex-basis: 0;
     padding: 0 1rem;
-    background: ${({active, theme}) => active ? theme.primary2 : theme.bg2};
+    background: ${({active, theme}) => active ? theme.primary1 : theme.bg2};
     border-radius: 8px;
     text-align: center;
     text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.2, 1);
 
     & > h3 {
-        color: ${({active, theme}) => active ? theme.text1 : theme.primary2};
+        color: ${({active, theme}) => active ? theme.text1 : theme.primary1};
         font-weight: 600;
         font-size: 1.5rem;
     }
@@ -435,8 +437,7 @@ const CardsSection = (props: {data: CardsData}) => {
                             {!!card.icon &&
                                 React.cloneElement(card.icon, {style: {
                                     width: '64px',
-                                    height: '64px',
-                                    margin: '0.5rem auto 0'
+                                    height: '64px'
                                 }})
                             }
                             <p>{card.description}</p>

@@ -19,11 +19,11 @@ const BlogSection = styled.section`
 
     ${({theme}) => theme.media.small`
         padding: 0 1rem;
-        margin: 4rem auto 0;
+        margin: 2rem auto 0;
     `}
 `
 
-const Title = styled.h1`
+const BlogTitle = styled.h1`
     font-size: 4rem;
     font-weight: 500;
     margin: 0 0 0 2rem;
@@ -65,7 +65,7 @@ export default function Blog() {
                 title="Blog"
             />
             <BlogSection>
-                <Title>Blog</Title>
+                <BlogTitle>Blog</BlogTitle>
                 <BlogCardsGrid data={posts} large={true} />
             </BlogSection>
         </Layout>

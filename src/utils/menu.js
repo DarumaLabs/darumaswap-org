@@ -11,6 +11,17 @@ const menu = [
             }
         ]
     }, {
+        name: "Developers",
+        sublinks: [
+            {
+                name: "Github",
+                href: "https://github.com/DarumaLabs"
+            }, {
+                name: "Documentation",
+                href: "/docs"
+            }
+        ]
+    }, {
         name: "About",
         sublinks: [
             {
@@ -20,16 +31,8 @@ const menu = [
                 name: "Meet Team",
                 href: "/team"
             }, {
-                name: "Github",
-                href: "https://github.com/DarumaLabs"
-            }
-        ]
-    }, {
-        name: "Buy DARUMA",
-        sublinks: [
-            {
-                name: "PancakeSwap",
-                href: "https://exchange.pancakeswap.finance"
+                name: "Reddit",
+                href: "https://reddit.com/r/darumaswap"
             }
         ]
     }
