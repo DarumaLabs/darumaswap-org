@@ -30,7 +30,8 @@ const Number = styled.span`
 `
 
 const NumberInformation = styled.p`
-    font-size: 1.1 rem;
+    font-size: 1rem;
+    letter-spacing: 1.1px;
 `
 
 interface StatDataProps {
@@ -51,7 +52,7 @@ function Data({
         >
             <Number>
                 {children}
-                <span style={{opacity: 0.3}} >+</span>
+                <span style={{opacity: 0.3, marginLeft: '0.25rem'}} >+</span>
             </Number>
             <NumberInformation>{name}</NumberInformation>
         </div>

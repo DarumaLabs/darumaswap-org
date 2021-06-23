@@ -11,6 +11,7 @@ export interface Colors {
 
     bg1: string,
     bg2: string,
+    bg3: string,
 
     primaryText1: string,
 

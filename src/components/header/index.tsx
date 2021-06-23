@@ -4,11 +4,11 @@ import styled, { keyframes } from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { darken, lighten, transparentize } from 'polished'
 
-import useScrollPosition from '../hooks/useScrollPosition'
-import Menu from './menu'
-import Daruma from '../images/daruma.inline.svg'
-import MenuIcon from './menuIcon'
-import { PrimaryButton } from './button'
+import useScrollPosition from '../../hooks/useScrollPosition'
+import Menu from '../menu'
+import Daruma from '../../images/daruma.inline.svg'
+import MenuIcon from '../menuIcon'
+import { PrimaryButton } from '../button'
 
 const StyledHeader = styled.header`
     z-index: 99;
@@ -57,7 +57,7 @@ const StyledNav = styled.div`
         right: 0;
         transition: opacity 0.3s ease, ${isOpen || 'visibility 0s linear 0.3s'};
         opacity: ${isOpen ? '1' : '0'};
-        visibility: ${isOpen ? 'visibile' : 'hidden'};
+        visibility: ${isOpen ? 'visible' : 'hidden'};
     `}
 `
 
@@ -133,14 +133,6 @@ function Header({ siteTitle }) {
     const toogleIsMenuOpen = useCallback(() => {
         setIsMenuOpen(!isMenuOpen)
     }, [isMenuOpen, setIsMenuOpen])
-
-    // useLayoutEffect(() => {
-    //     if (isMenuOpen) {
-    //         document.
-    //     }
-    // }, [isMenuOpen])
-
-
 
     const [isHeaderTransparent, setIsHeaderTransparent] = useState(true)
 

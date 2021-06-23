@@ -36,12 +36,13 @@ export function colors(darkMode: boolean): Colors {
         gradient1: 'linear-gradient(to right, #ff003e, #6E44FF)',
 
         bg1: '#0d1114',
-        bg2: '#00000080',
+        bg2: '#06080A',
+        bg3: '#474A4C',
 
         primaryText1: '#ff003e',
 
         text1: '#f7f7f7',
-        text2: '#f7f7f780',
+        text2: '#828485',
     }
 }
 

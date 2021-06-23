@@ -37,6 +37,12 @@ module.exports = {
                 name: `blog`,
                 path: `${__dirname}/src/pages/blog`,
             },
+        }, {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `docs`,
+                path: `${__dirname}/src/pages/docs`,
+            },
         },
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-styled-components`,
@@ -58,6 +64,7 @@ module.exports = {
                 extensions: [`.mdx`, `.md`],
                 defaultLayouts: {
                     blog: require.resolve(`./src/layouts/blogPost.tsx`),
+                    docs: require.resolve(`./src/layouts/docs.tsx`)
                 },
                 gatsbyRemarkPlugins: [
                     `gatsby-remark-autolink-headers`,

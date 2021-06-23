@@ -6,7 +6,7 @@ import { darken } from 'polished'
 const MenuTitle = styled.p`
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
     margin-right: 20px;
     text-decoration: none;
