@@ -82,43 +82,42 @@ const Title = styled.h1`
     `}
 `
 
-const DarumaTitle = styled.span`
-    color: ${({theme}) => theme.primaryText1};
-    font-weight: 700;
-`
-
 const TitleSection = styled.section`
     max-width: 1500px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between
-`
-
-const StyledKatakana = styled(Katakana)`
-    width: 450px;
-    min-width: 450px;
-
-    ${({theme}) => theme.media.large`
-        width: 300px;
-        min-width: 300px;
-    `}
-
-    ${({theme}) => theme.media.large`
-        display: none;
-    `}
-`
-
-const TitleWrapper = styled.div`
     max-width: 1100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+`
+
+const DarumaTitle = styled.span`
+    color: ${({theme}) => theme.primaryText1};
+    font-weight: 700;
+    display: none;
+
+    ${({theme}) => theme.media.small`
+        display: initial;
+    `}
+`
+
+const StyledKatakana = styled(Katakana)`
+    width: 30rem;
+    margin: 0.5rem 0 0;
+
+    ${({theme}) => theme.media.large`
+        width: 26rem;
+    `}
+
+    ${({theme}) => theme.media.small`
+        display: none;
+    `}
 `
 
 const Subtitle = styled.h2`
-    margin-top: 2rem;
+    margin-top: 3rem;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
@@ -235,31 +234,24 @@ export default function Home() {
             </BGCard>
             <StyledBody>
                 <TitleSection>
-                    <TitleWrapper>
-
-                        <Title>
-                            Master DeFi with
-                            <span> </span>
-                            <DarumaTitle>DARUMA</DarumaTitle>
-                        </Title>
-
-                        <Subtitle>The new generation of decentralised swapping protocol</Subtitle>
-
-                        <TitleButtonsWrapper>
-                            <PrimaryButton
-                                href="https://app.darumaswap.org"
-                            >
-                                Use Darumaswap
-                            </PrimaryButton>
-                            <SecondaryButton
-                                href="/docs"
-                            >
-                                Documentation
-                            </SecondaryButton>
-                        </TitleButtonsWrapper>
-
-                    </TitleWrapper>
+                    <Title>
+                        Master DeFi with
+                        <DarumaTitle> DARUMA</DarumaTitle>
+                    </Title>
                     <StyledKatakana />
+                    <Subtitle>The new generation of decentralised swapping protocol</Subtitle>
+                    <TitleButtonsWrapper>
+                        <PrimaryButton
+                            href="https://app.darumaswap.org"
+                        >
+                            Use Darumaswap
+                        </PrimaryButton>
+                        <SecondaryButton
+                            href="/docs"
+                        >
+                            Documentation
+                        </SecondaryButton>
+                    </TitleButtonsWrapper>
                 </TitleSection>
                 <StyledTokenData />
                 <AppSection data={data} />
