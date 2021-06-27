@@ -11,11 +11,18 @@ const StyledDocsSidebar = styled.nav`
     z-index: 99;
     position: fixed;
     width: 17rem;
-    left: 1rem;
+    left: 0;
     top: 4.25rem;
     bottom: 0;
     border-right: 1px solid ${({theme}) => theme.bg3};
-    padding: 1rem 1rem 0 0;
+    padding: 1rem 1rem 0 1rem;
+    transition: transform 250ms ease;
+
+    ${({theme, open}) => theme.media.large`
+        ${!open && 'transform: translateX(-100%);'}
+        background: ${theme.bg1};
+        top: 0;
+    `}
 `
 
 const DocsCategoryButton = styled.button`
@@ -46,7 +53,12 @@ const DocsCategoryButton = styled.button`
     }
 `
 
-export default function DocsSidebar(props: {path: string}) {
+interface DocsSidebarProps {
+    path: string,
+    open: boolean
+}
+
+export default function DocsSidebar(props: DocsSidebarProps) {
     const [selectedMenu, setSelectedMenu] = useState()
 
     const data = useStaticQuery(graphql`
@@ -88,7 +100,7 @@ export default function DocsSidebar(props: {path: string}) {
     }, [setSelectedMenu, selectedMenu])
 
     return (
-        <StyledDocsSidebar>
+        <StyledDocsSidebar open={props.open} >
             {
                 categories.map((category, index) =>
                     <>

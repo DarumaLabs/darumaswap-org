@@ -1,10 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react'
 import {
     DefaultTheme,
     ThemeProvider as StyledThemeProvider,
     createGlobalStyle,
     css
-} from 'styled-components';
+} from 'styled-components'
+import { transparentize } from 'polished'
+
 import { Colors } from './styled'
 
 const MEDIA_QUERIES_WIDTH = {
@@ -69,6 +71,12 @@ const ThemedGlobalStyle = createGlobalStyle`
 
     a {
         color: ${({theme}) => theme.primaryText1};
+    }
+
+    code {
+        background: ${({theme}) => transparentize(0.5, theme.bg3)};
+        padding: 0 0.25rem;
+        border-radius: 0.25rem;
     }
 `
 

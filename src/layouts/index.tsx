@@ -11,10 +11,11 @@ import '../styles/fonts.css'
 
 interface LayoutProps {
     children: React.ReactNode,
-    isDocs: boolean
+    isDocs: boolean,
+    path: string
 }
 
-export default function Layout({ children, isDocs }: LayoutProps) {
+export default function Layout({ children, isDocs, path }: LayoutProps) {
     const data = useStaticQuery(graphql`
         query {
             site {
@@ -28,7 +29,7 @@ export default function Layout({ children, isDocs }: LayoutProps) {
     return (
         <ThemeProvider>
             {isDocs ? (
-                <DocsHeader />
+                <DocsHeader path={path} />
             ) : (
                 <Header siteTitle={data.site.siteMetadata.title} />
             )}

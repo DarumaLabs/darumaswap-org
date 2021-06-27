@@ -43,7 +43,7 @@ const StyledNav = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    ${({theme, isOpen}) => theme.media.medium`
+    ${({theme, open}) => theme.media.medium`
         overflow-y: scroll;
         flex-direction: column;
         align-items: flex-start;
@@ -55,9 +55,9 @@ const StyledNav = styled.div`
         bottom: 0;
         left: 0;
         right: 0;
-        transition: opacity 0.3s ease, ${isOpen || 'visibility 0s linear 0.3s'};
-        opacity: ${isOpen ? '1' : '0'};
-        visibility: ${isOpen ? 'visible' : 'hidden'};
+        transition: opacity 0.3s ease, ${open || 'visibility 0s linear 0.3s'};
+        opacity: ${open ? '1' : '0'};
+        visibility: ${open ? 'visible' : 'hidden'};
     `}
 `
 
@@ -148,7 +148,7 @@ function Header({ siteTitle }) {
                     <StyledTitle>{siteTitle}</StyledTitle>
                 </StyledHomeLink>
             </StyledTitleNav>
-            <StyledNav isOpen={isMenuOpen} >
+            <StyledNav open={isMenuOpen} >
                 {
                     data.site.siteMetadata.menulinks.map((menulink, index) => {
                         return <Menu key={index} menulink={menulink} />
@@ -161,7 +161,7 @@ function Header({ siteTitle }) {
                     Use Darumaswap
                 </AppLink>
             </StyledNav>
-            <StyledMenuIcon isOpen={isMenuOpen} onClick={toogleIsMenuOpen} />
+            <StyledMenuIcon open={isMenuOpen} onClick={toogleIsMenuOpen} />
         </StyledHeader>
     )
 }

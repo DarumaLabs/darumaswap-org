@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from './'
 import Seo from '../components/seo.tsx'
-import DocsSidebar from '../components/docsSidebar'
 import TableOfContent from '../components/tableOfContent'
 import Arrow from '../images/arrow.svg'
 
@@ -14,7 +13,16 @@ const DocsContent = styled.section`
     gap: 2rem;
     margin-left: 304px;
     right: 0;
-    padding: 1rem 1rem 1rem 3rem;
+    padding: 1rem 3rem;
+
+    ${({theme}) => theme.media.large`
+        margin: 0;
+    `}
+
+
+    ${({theme}) => theme.media.small`
+        padding: 1rem;
+    `}
 `
 
 const StyledBody = styled.div`
@@ -89,6 +97,20 @@ const StyledBody = styled.div`
     & h2:hover .anchor, & h3:hover .anchor {
         opacity: 1;
     }
+
+    ${({theme}) => theme.media.small`
+        & .anchor {
+            display: none;
+        }
+
+        & h2 {
+            font-size: 1.5rem;
+        }
+
+        & h3 {
+            font-size: 1.25rem;
+        }
+    `}
 `
 
 const DocsTitle = styled.h1`
@@ -96,6 +118,11 @@ const DocsTitle = styled.h1`
     font-size: 2.75rem;
     font-weight: 500;
     margin: 1rem 0 0;
+
+    ${({theme}) => theme.media.small`
+        font-size: 2.5rem;
+        margin: 0;
+    `}
 `
 
 export default function Docs(props) {
@@ -132,9 +159,8 @@ export default function Docs(props) {
     }
 
     return (
-        <Layout isDocs={true} >
+        <Layout isDocs={true} path={props.location.pathname} >
             <Seo title="Documentation" />
-            <DocsSidebar path={props.location.pathname} />
             <DocsContent>
                 <StyledBody>
                     <DocsTitle>{docs.frontmatter.title}</DocsTitle>

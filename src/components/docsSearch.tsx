@@ -14,6 +14,10 @@ const StyledForm = styled.form`
     ::-webkit-input-placeholder {
         color:
     }
+
+    ${({theme}) => theme.media.large`
+        display: none;
+    `}
 `
 
 const StyledInput = styled.input`
