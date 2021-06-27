@@ -108,6 +108,7 @@ export default function DocsSidebar(props: {path: string}) {
                             style={{display: selectedMenu == category.node.name ? 'initial' : 'none'}}
                             data={docsLinks}
                             parent={category.node.name}
+                            key={index}
                         />
                     </>
                 )
@@ -126,7 +127,8 @@ const DocsListItem = styled.li`
     font-size: 1rem;
 
     & > a {
-        padding: 0.5rem;
+        margin-left: -0.5rem;
+        padding: 0.5rem 0 0.5rem 0.5rem;
         display: block;
         width: 100%;
         border-radius: 0.25rem;

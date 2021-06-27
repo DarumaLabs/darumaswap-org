@@ -7,7 +7,8 @@ import { transparentize } from 'polished'
 const slugger = new GithubSlugger()
 
 interface Heading {
-    value: string
+    value: string,
+    depth: number
 }
 
 interface TableOfContentProps {
@@ -36,7 +37,7 @@ const StyledTableOfContent = styled.nav`
 
 const StyledHeadingLink = styled(Link)`
     display: block;
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.5rem ${({depth}) => 0.75 * depth}rem;
     font-size: 0.75rem;
     color: ${({theme}) => theme.text2};
     transition: color 250ms ease 0s;
@@ -51,17 +52,42 @@ const HeadingLink = function({heading}: Heading) {
     slugger.reset()
 
     return (
-        <StyledHeadingLink to={'#' + slug} >{heading.value}</StyledHeadingLink>
+        <StyledHeadingLink
+            to={'#' + slug}
+            depth={heading.depth}
+        >
+            {heading.value}
+        </StyledHeadingLink>
     )
 }
 
 export default function TableOfContent({headings}: TableOfContentProps) {
+    if (!headings.length) {
+        return null
+    }
+
+    const minDepth = headings.reduce((acc, heading) => {
+        if (acc < 0 || heading.depth < acc) {
+            acc = heading.depth
+        }
+        return acc
+    }, -1) as number
+
+    headings.forEach(heading => {
+        heading.depth -= minDepth
+    })
+
+    console.log(minDepth)
+
     return (
         <StyledTableOfContent>
             <h3>Table of content</h3>
             {
                 headings.map((heading, index) =>
-                    <HeadingLink key={index} heading={heading} />
+                    <HeadingLink
+                        key={index}
+                        heading={heading}
+                    />
                 )
             }
         </StyledTableOfContent>

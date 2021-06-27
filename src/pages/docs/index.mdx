@@ -2,4 +2,75 @@
 title: 'Introduction'
 ---
 
-Test
+## What is DarumaSwap?
+
+DarumaSwap is the decentralised application built by the **DarumaLabs organization** on the Ethereum blockchain.
+It consists of multiple [Decentralized Finance (DeFi)](https://www.youtube.com/watch?v=H-O3r2YMWJ4) products
+which will be described in more detail here.
+
+Like almost any DeFi application, DarumaSwap relies on 3 major components:
+- **DarumaSwap Protocol**: A set of smart contracts, completely decentralized, permissionless and censorship-resistant.
+It can be considered as the backend of DarumaSwap.
+- **DarumaSwap Interface**: A web application that allows to interact with the DarumaSwap Protocol.
+- **DARUMA token**: An [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) token,
+used to reward liquidity providers, DARUMA stakers and enabling our governance system.
+
+*\*DarumaSwap is 100% open source, you can find the code on [github](https://github.com/DarumaLabs)*
+
+## What innovations DarumaSwap brings?
+
+Thus far, the main product provided by DarumaSwap is a decentralised exchange (DEX), a platform to exchange
+ERC-20 tokens on the Ethereum blockchain, in a decentralised way, following the Automated market maker (AMM) approach
+initialy implemented by [Bancor](https://bancor.network/), and widely popularised by [Uniswap](https://uniswap.org).
+
+### Order Book
+
+When it comes to trade assets on a centralised exchange such as Binance or Kraken, the trading is based on the order book model.
+With this model, buyers and sellers place orders, buyers wants to buy for as low as possible whereas sellers want to sell
+for as high as possible. So their orders converge to a price and the trades can take place. However, what happens if the buyers and sellers
+can't agree on a price, or if there's not enough volume to satisfy an order? The market maker, an entity who owns liquidity, will
+automaticly fill the orders.
+
+This model works well when implemented in a centralised exchange and is **capital efficient**, which basically means that it doens't need much
+liquidity to work. On the other side, when implemented on the Ethereum protocol it leads to a very slow and expensive user experience.
+Each order and order cancelation have to be validate on the blockchain, which cost gas fees and time, and because the market maker will spend a
+lot of gas by updating its orders, it would go bankrupt quickly.
+
+### Liquidity Pool
+
+An alternative which fits well into the Ethereum protocol is the liquidity pool model. A liquidity pool is an address that holds 2 tokens and works
+on the assumption that both quantities of tokens have the same value. This assumption incentivises the liquidity provider who create the
+pool to supply an equal value of both tokens. Otherwise, it would lead to an arbitrage opportunity that can result in lost capital for the
+liquidity provider. Once the pool is created, the other liquidity providers have to supply tokens by respecting the actual ratio in the pool,
+so that, providing liquidity doesn't affect the price of the pool's tokens.
+
+Now that we've described the concept of a liquidity pool, let's take the examaple
+of the `DAI/ETH` pool. If I want to buy `ETH` with `DAI`, I will send my `DAI` to the liquidity pool and receive the equivalent amount
+of `ETH`. Given that my trade have modified the ratio of tokens in the pool, the value of both tokens will update to the new ratio.
+In our example, after the trade there's more `DAI` to the pool and less `ETH`, so the `ETH` value will increase and the `DAI` value will decrease.
+
+### Capital efficiency
+
+The main issue with the AMM approach is the lack of **capital efficiency**. Compared to the order book model, it takes a lot more liquidity
+to get a stable market without too much spread and volatility. Which leads to a vicious circle, the less liquidity the pool has,
+the less stable the price is, so the higher the risk of capital loss is for liquidity providers due to
+[impermanent loss](https://academy.binance.com/en/articles/impermanent-loss-explained).
+
+To keep attracting liquidity providers, DEXs seek to reward users willing to bring capital to their platform. Firstly by adding a fee on each
+trade (`0.3%` for almost every DEX), and sometimes by allowing the staking of the liquidity tokens to earn the governance token of the protocol,
+and so, incentivized liquidity mining even further.
+
+### Concentrated liquidity
+
+**Uniswap V3** introduced the concentrated liquidity as a solution to the lack of capital efficiency. Liquidity providers can chose the price
+range in which their liquidity will be used. The whole liquidity of the pool is **concentrated** in multiple custom price ranges instead of
+an uniform distribution across the entire price interval (0, ∞).
+
+The concentrated liquidity is a great innovation as it actually drastically increase the capital efficiency, however, there's some cons:
+- **Higher gas fees**: The execution of a trade or liquidity providing is much more complex compared to a basic AMM which leads to an
+increase of the gas quantity required to use the protocol.
+- **Amplified impermanent loss**: You can think about concentrated liquidity as providing liquidity on leverage. If the price of the pool
+falls outside of the range in which you've provided liquidity, you stop earning trading fees and your position is left with only 1 token.
+The gains are amplified but the losses too.
+- **Irregular spread and volatility**: With the liquidity unevenly distributed across the entire price interval, the spread and volatility
+follow an irregular evolution.

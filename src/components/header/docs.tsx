@@ -7,6 +7,7 @@ import DarumaWhite from '../../images/logo-white.inline.svg'
 import GithubIcon from '../../images/github.inline.svg'
 
 const StyledHeader = styled.header`
+    background: ${({theme}) => theme.bg1};
     z-index: 99;
     height: 4.25rem;
     display: flex;
