@@ -6,6 +6,7 @@ import DocsSearch from '../docsSearch'
 import DocsSidebar from '../docsSidebar'
 import DarumaWhite from '../../images/logo-white.inline.svg'
 import GithubIcon from '../../images/github.inline.svg'
+import HomeIcon from '../../images/home.inline.svg'
 import MenuIcon from '../../images/menu.inline.svg'
 import SearchIcon from '../../images/search.inline.svg'
 
@@ -118,8 +119,11 @@ export default function DocsHeader(props) {
             <Row>
                 <StyledSearchIcon />
                 <DocsSearch />
-                <IconLink to='https://github.com/darumalabs'>
+                <IconLink to='https://github.com/darumalabs' >
                     <GithubIcon />
+                </IconLink>
+                <IconLink to='/' >
+                    <HomeIcon />
                 </IconLink>
             </Row>
             <DocsSidebar
