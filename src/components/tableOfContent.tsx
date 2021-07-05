@@ -77,8 +77,6 @@ export default function TableOfContent({headings}: TableOfContentProps) {
         heading.depth -= minDepth
     })
 
-    console.log(minDepth)
-
     return (
         <StyledTableOfContent>
             <h3>Table of content</h3>

@@ -1,6 +1,10 @@
-import styled from 'styled-components'
+import React from 'react'
+import { Link } from 'gatsby'
+import styled, { css } from 'styled-components'
 
-const BaseButton = styled.a`
+import Caret from '../images/caret.inline.svg'
+
+const BaseButton = styled(Link)`
     border-radius: 0.5rem;
     border: none;
     outline: none;
@@ -43,3 +47,61 @@ export const SecondaryButton = styled(BaseButton)`
     background: transparent;
     border: 1px solid ${({theme}) => theme.white};
 `
+
+const StyledNavigationButton = styled(SecondaryButton)`
+    display: flex;
+    flex-direction: ${({direction}) =>
+        direction === NavigationDirection.Next && 'row-reverse' ||
+        direction === NavigationDirection.Previous && 'row' ||
+        'row'
+    };
+    align-items: center;
+    ${({direction}) =>
+        direction === NavigationDirection.Next && css`
+            padding-right: 0.5rem;
+            padding-left: 1rem;
+        ` ||
+        direction === NavigationDirection.Previous && css`
+            padding-right: 1rem;
+            padding-left: 0.5rem;
+        `
+    }
+
+    & svg {
+        stroke: ${({theme}) => theme.text1};
+        width: 1rem;
+        height: 1rem;
+        ${({direction}) =>
+            direction === NavigationDirection.Next && css`
+                margin-left: 0.5rem;
+            ` ||
+            direction === NavigationDirection.Previous && css`
+                transform: scaleX(-1);
+                margin-right: 0.5rem;
+            `
+        };
+    }
+`
+
+export enum NavigationDirection {
+    Next,
+    Previous
+}
+
+interface NavigationButtonProps {
+    children: string,
+    direction: NavigationDirection,
+    to: string
+}
+
+export const NavigationButton = ({children, direction, to}: NavigationButtonProps) => {
+    return (
+        <StyledNavigationButton
+            direction={direction}
+            to={to}
+        >
+            <Caret />
+            {children}
+        </StyledNavigationButton>
+    )
+}

@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Layout from './'
 import Seo from '../components/seo.tsx'
 import TableOfContent from '../components/tableOfContent'
+import { NavigationDirection, NavigationButton } from '../components/button.tsx'
 import Arrow from '../images/arrow.svg'
 
 const DocsContent = styled.section`
@@ -13,7 +14,7 @@ const DocsContent = styled.section`
     gap: 2rem;
     margin-left: 304px;
     right: 0;
-    padding: 1rem 3rem;
+    padding: 1rem 3rem 2rem;
 
     ${({theme}) => theme.media.large`
         margin: 0;
@@ -125,6 +126,12 @@ const DocsTitle = styled.h1`
     `}
 `
 
+const NavigationWrapper = styled.div`
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+`
+
 export default function Docs(props) {
     const data = useStaticQuery(graphql`
         {
@@ -145,16 +152,32 @@ export default function Docs(props) {
                             slug
                         }
                     }
+                    next {
+                        frontmatter {
+                            title
+                        }
+                        fields {
+                            slug
+                        }
+                    }
+                    previous {
+                        frontmatter {
+                            title
+                        }
+                        fields {
+                            slug
+                        }
+                    }
                 }
             }
         }
     `)
 
-    const {node: docs} = data.allMdx.edges.filter(docs =>
+    const {node, next, previous} = data.allMdx.edges.filter(docs =>
         docs.node.fields.slug === props.path
-    )[0] ?? {node: undefined}
+    )[0] ?? {}
 
-    if (!docs) {
+    if (!node) {
         return null
     }
 
@@ -163,10 +186,31 @@ export default function Docs(props) {
             <Seo title="Documentation" />
             <DocsContent>
                 <StyledBody>
-                    <DocsTitle>{docs.frontmatter.title}</DocsTitle>
+                    <DocsTitle>{node.frontmatter.title}</DocsTitle>
                     {props.children}
+                    <NavigationWrapper>
+                        {previous && node.fields.slug !== '/docs/' &&
+                            <NavigationButton
+                                direction={NavigationDirection.Previous}
+                                to={previous.fields.slug}
+                            >{previous.frontmatter.title}</NavigationButton> ||
+                            <div />
+                        }
+                        {next && next.fields.slug !== '/docs/' &&
+                            <NavigationButton
+                                direction={NavigationDirection.Next}
+                                to={next.fields.slug}
+                            >{next.frontmatter.title}</NavigationButton>
+                        }
+                        {node.fields.slug === '/docs/' &&
+                            <NavigationButton
+                                direction={NavigationDirection.Next}
+                                to={data.allMdx.edges[0].node.fields.slug}
+                            >{data.allMdx.edges[0].node.frontmatter.title}</NavigationButton>
+                        }
+                    </NavigationWrapper>
                 </StyledBody>
-                <TableOfContent headings={docs.headings} />
+                <TableOfContent headings={node.headings} />
             </DocsContent>
         </Layout>
     )
