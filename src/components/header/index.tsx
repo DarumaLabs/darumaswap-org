@@ -156,7 +156,7 @@ function Header({ siteTitle }) {
                 }
                 <AppLink
                     target="_blank"
-                    href="https://app.darumaswap.org/"
+                    to="https://app.darumaswap.org/"
                 >
                     Use Darumaswap
                 </AppLink>

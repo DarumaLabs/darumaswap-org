@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { FluidObject } from 'gatsby-image'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Layout from './'
 import Seo from '../components/seo'
@@ -167,48 +168,7 @@ interface BlogPostProps {
     path: string
 }
 
-export default function BlogPost({children, pageContext, path}: BlogPostProps) {
-    const data = useStaticQuery(graphql`
-        {
-            allMdx(filter: {fileAbsolutePath: {regex: "/blog/"}}, sort: {order: DESC, fields: frontmatter___date}) {
-                edges {
-                    node {
-                        frontmatter {
-                            title
-                            date
-                            description
-                            banner {
-                                childImageSharp {
-                                    fluid(quality: 100, maxWidth: 1200) {
-                                        ...GatsbyImageSharpFluid
-                                    }
-                                }
-                            }
-                            authorName
-                            authorAvatar {
-                                childImageSharp {
-                                    fluid(quality: 100, maxWidth: 1200) {
-                                        ...GatsbyImageSharpFluid
-                                    }
-                                }
-                            }
-                        }
-                        fields {
-                            slug
-                            readingTime {
-                                text
-                            }
-                        }
-                        headings {
-                            value
-                            depth
-                        }
-                    }
-                }
-            }
-        }
-    `)
-
+export default function BlogPost({data, pageContext, path}: BlogPostProps) {
     const {node: post} = data.allMdx.edges.filter(post =>
         post.node.fields.slug === path
     )[0] ?? {node: undefined}
@@ -240,10 +200,59 @@ export default function BlogPost({children, pageContext, path}: BlogPostProps) {
                     readingTime={post.fields.readingTime.text}
                 />
                 <BlogContent>
-                    <BlogBody>{children}</BlogBody>
+                    <BlogBody>
+                        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+                    </BlogBody>
                     <TableOfContent headings={post.headings} />
                 </BlogContent>
             </StyledBody>
         </Layout>
     )
 }
+
+export const query = graphql`
+    query BlogPostQuery($relativePath: String) {
+        mdx(fields: { relativePath: { eq: $relativePath } }) {
+            body
+        }
+        allMdx(
+            filter: {fileAbsolutePath: {regex: "/blog/"}},
+            sort: {order: DESC, fields: frontmatter___date}
+        ) {
+            edges {
+                node {
+                    frontmatter {
+                        title
+                        date
+                        description
+                        banner {
+                            childImageSharp {
+                                fluid(quality: 100, maxWidth: 1200) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                        authorName
+                        authorAvatar {
+                            childImageSharp {
+                                fluid(quality: 100, maxWidth: 1200) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                    }
+                    fields {
+                        slug
+                        readingTime {
+                            text
+                        }
+                    }
+                    headings {
+                        value
+                        depth
+                    }
+                }
+            }
+        }
+    }
+`

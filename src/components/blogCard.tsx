@@ -146,7 +146,6 @@ interface BlogCardProps {
 }
 
 function BlogCard(props: BlogCardProps) {
-    console.log(props.data.frontmatter.banner)
     return (
         <StyledCard to={props.data.fields.slug} large={props.large} >
             <CardBanner fluid={props.data.frontmatter.banner.childImageSharp.fluid} />

@@ -64,7 +64,7 @@ export default function DocsSidebar(props: DocsSidebarProps) {
     const data = useStaticQuery(graphql`
         {
             docsCategories: allDirectory(
-                filter: { sourceInstanceName: { eq: "docs" } relativeDirectory: { eq: "" } }
+                filter: {dir: {regex: "/.*\/docs$/"}}
                 sort: { fields: name, order: ASC }
             ) {
                 edges {
@@ -90,6 +90,8 @@ export default function DocsSidebar(props: DocsSidebarProps) {
             }
         }
     `)
+
+    console.log(data)
 
     const categories = data.docsCategories.edges
 

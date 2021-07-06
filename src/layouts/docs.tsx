@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Layout from './'
 import Seo from '../components/seo.tsx'
@@ -132,62 +133,26 @@ const NavigationWrapper = styled.div`
     justify-content: space-between;
 `
 
-export default function Docs(props) {
-    const data = useStaticQuery(graphql`
-        {
-            allMdx(
-                filter: { fileAbsolutePath: { regex: "/docs/" } },
-                sort: { order: ASC, fields: fileAbsolutePath }
-            ) {
-                edges {
-                    node {
-                        headings {
-                            value
-                            depth
-                        }
-                        frontmatter {
-                            title
-                        }
-                        fields {
-                            slug
-                        }
-                    }
-                    next {
-                        frontmatter {
-                            title
-                        }
-                        fields {
-                            slug
-                        }
-                    }
-                    previous {
-                        frontmatter {
-                            title
-                        }
-                        fields {
-                            slug
-                        }
-                    }
-                }
-            }
-        }
-    `)
-
+export default function Docs({data, pageContext, path}) {
     const {node, next, previous} = data.allMdx.edges.filter(docs =>
-        docs.node.fields.slug === props.path
+        docs.node.fields.slug === path
     )[0] ?? {}
 
     if (!node) {
         return null
     }
 
+    // const editContentUrl = data.site.siteMetadata.repository + '/tree/master/'
+
+    console.log(pageContext)
+
     return (
-        <Layout isDocs={true} path={props.location.pathname} >
+        <Layout isDocs={true} path={path} >
             <Seo title="Documentation" />
             <DocsContent>
                 <StyledBody>
                     <DocsTitle>{node.frontmatter.title}</DocsTitle>
-                    {props.children}
+                    <MDXRenderer>{data.mdx.body}</MDXRenderer>
                     <NavigationWrapper>
                         {previous && node.fields.slug !== '/docs/' &&
                             <NavigationButton
@@ -215,3 +180,51 @@ export default function Docs(props) {
         </Layout>
     )
 }
+
+export const query = graphql`
+    query DocsPageQuery($relativePath: String) {
+        mdx(fields: { relativePath: { eq: $relativePath } }) {
+            body
+        }
+        site {
+            siteMetadata {
+                repository
+            }
+        }
+        allMdx(
+            filter: { fileAbsolutePath: { regex: "/docs/" } },
+            sort: { order: ASC, fields: fileAbsolutePath }
+        ) {
+            edges {
+                node {
+                    headings {
+                        value
+                        depth
+                    }
+                    frontmatter {
+                        title
+                    }
+                    fields {
+                        slug
+                    }
+                }
+                next {
+                    frontmatter {
+                        title
+                    }
+                    fields {
+                        slug
+                    }
+                }
+                previous {
+                    frontmatter {
+                        title
+                    }
+                    fields {
+                        slug
+                    }
+                }
+            }
+        }
+    }
+`
