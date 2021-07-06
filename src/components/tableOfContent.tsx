@@ -36,6 +36,7 @@ const StyledTableOfContent = styled.nav`
 `
 
 const StyledHeadingLink = styled(Link)`
+    width: fit-content;
     display: block;
     margin: 0 0 0.5rem ${({depth}) => 0.75 * depth}rem;
     font-size: 0.75rem;

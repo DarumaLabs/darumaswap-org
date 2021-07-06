@@ -8,6 +8,7 @@ import Seo from '../components/seo.tsx'
 import TableOfContent from '../components/tableOfContent'
 import { NavigationDirection, NavigationButton } from '../components/button.tsx'
 import Arrow from '../images/arrow.svg'
+import GithubIcon from '../images/github.inline.svg'
 
 const DocsContent = styled.section`
     display: flex;
@@ -116,7 +117,6 @@ const StyledBody = styled.div`
 `
 
 const DocsTitle = styled.h1`
-    width: 100%;
     font-size: 2.75rem;
     font-weight: 500;
     margin: 1rem 0 0;
@@ -133,6 +133,38 @@ const NavigationWrapper = styled.div`
     justify-content: space-between;
 `
 
+const Row = styled.div`
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    & > * {
+        flex-shrink: 0;
+    }
+`
+
+const EditContentLink = styled.a`
+    display: flex;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: ${({theme}) => theme.text2};
+    transition: color 250ms ease;
+
+    & > svg {
+        margin-right: 0.5rem;
+        widht: 1.5rem;
+        height: 1.5rem;
+    }
+
+    &:hover {
+        color: ${({theme}) => theme.text1};
+    }
+
+    ${({theme}) => theme.media.small`
+        display: none;
+    `}
+`
+
 export default function Docs({data, pageContext, path}) {
     const {node, next, previous} = data.allMdx.edges.filter(docs =>
         docs.node.fields.slug === path
@@ -142,16 +174,25 @@ export default function Docs({data, pageContext, path}) {
         return null
     }
 
-    // const editContentUrl = data.site.siteMetadata.repository + '/tree/master/'
-
-    console.log(pageContext)
+    const editContentUrl = data.site.siteMetadata.repository
+    + '/tree/documentation/'
+    + pageContext.relativePath
 
     return (
         <Layout isDocs={true} path={path} >
             <Seo title="Documentation" />
             <DocsContent>
                 <StyledBody>
-                    <DocsTitle>{node.frontmatter.title}</DocsTitle>
+                    <Row>
+                        <DocsTitle>{node.frontmatter.title}</DocsTitle>
+                        <EditContentLink
+                            href={editContentUrl}
+                            target='_blank'
+                        >
+                            <GithubIcon />
+                            Edit page
+                        </EditContentLink>
+                    </Row>
                     <MDXRenderer>{data.mdx.body}</MDXRenderer>
                     <NavigationWrapper>
                         {previous && node.fields.slug !== '/docs/' &&

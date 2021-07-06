@@ -91,8 +91,6 @@ export default function DocsSidebar(props: DocsSidebarProps) {
         }
     `)
 
-    console.log(data)
-
     const categories = data.docsCategories.edges
 
     const docsLinks = data.docsLinks.edges
@@ -105,11 +103,13 @@ export default function DocsSidebar(props: DocsSidebarProps) {
         <StyledDocsSidebar open={props.open} >
             {
                 categories.map((category, index) =>
-                    <>
+                    <div
+                        style={{display: 'contents'}}
+                        key={`docs-sidebar${index}`}
+                    >
                         <DocsCategoryButton
                             onClick={() => toggleSelectedMenu(category.node.name)}
                             active={selectedMenu == category.node.name}
-                            key={index}
                         >
                             {category.node.name
                                 .replace(/\d+-/g, '')
@@ -122,9 +122,8 @@ export default function DocsSidebar(props: DocsSidebarProps) {
                             style={{display: selectedMenu == category.node.name ? 'initial' : 'none'}}
                             data={docsLinks}
                             parent={category.node.name}
-                            key={index}
                         />
-                    </>
+                    </div>
                 )
             }
         </StyledDocsSidebar>
