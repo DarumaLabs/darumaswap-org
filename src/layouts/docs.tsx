@@ -24,7 +24,7 @@ const DocsContent = styled.section`
 
 
     ${({theme}) => theme.media.small`
-        padding: 1rem;
+        padding: 1rem 1rem 2rem;
     `}
 `
 
@@ -131,6 +131,21 @@ const NavigationWrapper = styled.div`
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
+
+    ${({theme}) => theme.media.small`
+        flex-wrap: wrap;
+        column-gap: 2rem;
+        row-gap: 1rem;
+        align-items: center;
+
+        & > a {
+            margin: 0 auto;
+        }
+
+        & > div {
+            display: none;
+        }
+    `}
 `
 
 const Row = styled.div`
@@ -141,6 +156,12 @@ const Row = styled.div`
     & > * {
         flex-shrink: 0;
     }
+
+    ${({theme}) => theme.media.small`
+        & > * {
+            flex-shrink: initial;
+        }
+    `}
 `
 
 const EditContentLink = styled.a`
@@ -149,6 +170,7 @@ const EditContentLink = styled.a`
     font-family: 'Source Sans Pro', sans-serif;
     color: ${({theme}) => theme.text2};
     transition: color 250ms ease;
+    margin-right: 1rem;
 
     & > svg {
         margin-right: 0.5rem;

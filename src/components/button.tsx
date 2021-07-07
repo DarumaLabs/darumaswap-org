@@ -81,6 +81,10 @@ const StyledNavigationButton = styled(SecondaryButton)`
             `
         };
     }
+
+    ${({theme}) => theme.media.small`
+        justify-content: center;
+    `}
 `
 
 export enum NavigationDirection {
