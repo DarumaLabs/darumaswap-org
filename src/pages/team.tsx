@@ -1,45 +1,85 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
 
 import Layout from "../layouts"
 import Seo from "../components/seo"
+import Title from '../components/title'
+import { SecondaryButton } from '../components/button'
 import TwitterIcon from '../images/twitter.inline.svg'
 import InstagramIcon from '../images/instagram.inline.svg'
 
-const StyledBanner = styled(Img)`
-    display: block;
+const TeamSection = styled.section`
+    margin: 4rem auto;
     box-sizing: border-box;
-    max-width: 1200px;
+    max-width: 1328px;
     padding: 0 4rem;
     width: 100%;
-    margin: 4rem auto;
-    border-radius: 0.5rem;
+
+    ${({theme}) => theme.media.small`
+        padding: 0 1rem;
+        margin: 2rem auto 0;
+    `}
+`
+
+const StyledTeamSpeech = styled.div`
+    margin: 6rem 8rem 0 2rem;
+
+    & > p {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    & > h2 {
+        line-height: 1.4;
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 500;
+        color: ${({theme}) => theme.text2};
+    }
+
+    ${({theme}) => theme.media.medium`
+        margin: 4rem 2rem 0
+    `}
+
+    ${({theme}) => theme.media.small`
+        margin: 4rem 1rem 0
+    `}
+`
+
+const CategoriesWrapper = styled.div`
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 6rem;
+    display: flex;
+    gap: 1.5rem;
+
+    & > button {
+        margin: 0 auto;
+    }
 
     ${({theme}) => theme.media.medium`
         padding: 0 1rem;
     `}
-`
 
-const Title = styled.h1`
-    margin: 4rem 0 0;
-    text-align: center;
-    color: ${({theme}) => theme.text1};
-    font-size: 4rem;
-    font-weight: 500;
+    ${({theme}) => theme.media.small`
+        margin-top: 5rem;
+    `}
 `
 
 const MembersWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, 12rem);
-    justify-content: space-between;
+    grid-template-columns: repeat(5,minmax(0,1fr));
     grid-gap: 2rem;
     box-sizing: border-box;
     max-width: 1200px;
-    padding: 0 4rem;
     flex-wrap: wrap;
-    margin: 4rem auto 0;
+    margin: 2rem auto 0;
 
     ${({theme}) => theme.media.medium`
         grid-template-columns: repeat(3,minmax(0,1fr));
@@ -51,9 +91,15 @@ const MembersWrapper = styled.div`
     `}
 `
 
+enum TeamMemberCategory {
+    Developer,
+    Designer
+}
+
 interface Member {
     avatar: FluidObject,
     name: string,
+    category: TeamMemberCategory,
     title: string,
     socialHandle: string,
     socialLink: string,
@@ -61,15 +107,11 @@ interface Member {
 }
 
 export default function Team() {
+    const [selectedCategory, setSelectedCategory] = useState()
+
     const data = useStaticQuery(graphql`
         {
             negativeHoroAvatar: file(relativePath: { eq: "negative-horo.png" }) {
-                childImageSharp {
-                    fluid(quality: 100, maxWidth: 512) {
-                        ...GatsbyImageSharpFluid
-                    }
-                }
-            }, macledAvatar: file(relativePath: { eq: "macled.png" }) {
                 childImageSharp {
                     fluid(quality: 100, maxWidth: 512) {
                         ...GatsbyImageSharpFluid
@@ -81,15 +123,15 @@ export default function Team() {
                         ...GatsbyImageSharpFluid
                     }
                 }
-            }, lit0neAvatar: file(relativePath: { eq: "lit0ne.png" }) {
-                childImageSharp {
-                    fluid(quality: 100, maxWidth: 512) {
-                        ...GatsbyImageSharpFluid
-                    }
-                }
             }, teamBanner: file(relativePath: { eq: "team-banner.png" }) {
                 childImageSharp {
                     fluid(quality: 100, maxWidth: 1200) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }, lit0neAvatar: file(relativePath: { eq: "lit0ne.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -97,24 +139,23 @@ export default function Team() {
         }
     `)
 
+    const toggleSelectedCategory = useCallback((category) => {
+        setSelectedCategory(selectedCategory === category ? null : category)
+    }, [setSelectedCategory, selectedCategory])
+
     const teamMembers: Array<Member> = [
         {
             avatar: data.negativeHoroAvatar.childImageSharp.fluid,
             name: 'NegativeHoro',
-            title: 'Founder',
+            category: TeamMemberCategory.Developer,
+            title: 'Developer',
             socialHandle: '0xNegativeHoro',
             socialLink: 'https://twitter.com/0xNegativeHoro',
             socialIcon: <TwitterIcon />
         }, {
-            avatar: data.macledAvatar.childImageSharp.fluid,
-            name: 'Macled',
-            title: 'Core Developer',
-            socialHandle: '_Macled',
-            socialLink: 'https://twitter.com/_Macled',
-            socialIcon: <TwitterIcon />
-        }, {
             avatar: data.jungleAvatar.childImageSharp.fluid,
             name: 'Jungle',
+            category: TeamMemberCategory.Designer,
             title: 'Graphic Designer',
             socialHandle: 'jungleraiddog',
             socialLink: 'https://instagram.com/jungleraiddog',
@@ -122,11 +163,12 @@ export default function Team() {
         }, {
             avatar: data.lit0neAvatar.childImageSharp.fluid,
             name: 'Lit0ne',
+            category: TeamMemberCategory.Developer,
             title: 'Security Lead',
             socialHandle: 'c0rtezhill',
             socialLink: 'https://twitter.com/c0rtezhill',
             socialIcon: <TwitterIcon />
-        }
+         }
     ]
 
     return (
@@ -135,15 +177,47 @@ export default function Team() {
                 title="Team"
                 description="Meet the team behind DarumaSwap"
             />
-            <StyledBanner fluid={data.teamBanner.childImageSharp.fluid} />
-            <Title>Meet the Team</Title>
-            <MembersWrapper>
-                {
-                    teamMembers.map((member, index) =>
-                        <MemberCard key={index} member={member} />
-                    )
-                }
-            </MembersWrapper>
+            <TeamSection>
+                <Title>Meet the Team</Title>
+                <StyledTeamSpeech>
+                    <h2>We're DarumaLabs</h2>
+                    <p>
+                        An open-source software development organization,
+                        working to create a more decentralised world powered
+                        by the blockchain technology.
+                        <br />
+                        <br />
+                        We do not share the values of the legacy financial system,
+                        but We believe in DeFi (Decentralized Finance).
+                        Hence, we’re playing our part to help building this ecosystem.
+                    </p>
+                </StyledTeamSpeech>
+                <CategoriesWrapper>
+                    {
+                        Object
+                        .values(TeamMemberCategory)
+                        .filter(k => isNaN(Number(k)))
+                        .map((category, index) =>
+                            <SecondaryButton
+                                onClick={() => toggleSelectedCategory(category)}
+                                key={`team-member-category-${index}`}
+                                selected={category === selectedCategory}
+                            >
+                                {category}
+                            </SecondaryButton>
+                        )
+                    }
+                </CategoriesWrapper>
+                <MembersWrapper>
+                    {
+                        teamMembers
+                        .filter(k => !selectedCategory || TeamMemberCategory[k.category] === selectedCategory)
+                        .map((member, index) =>
+                            <MemberCard key={index} member={member} />
+                        )
+                    }
+                </MembersWrapper>
+            </TeamSection>
         </Layout>
     )
 }

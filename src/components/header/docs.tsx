@@ -58,8 +58,8 @@ const DocsTitle = styled.h4`
 `
 
 const IconLink = styled(Link)`
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     margin: 0 0 0 1.25rem;
 
     ${({theme}) => theme.media.large`

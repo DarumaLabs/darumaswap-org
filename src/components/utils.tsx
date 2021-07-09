@@ -19,6 +19,7 @@ export const CardBGImage = styled.span`
 `
 
 export const CardRadial = styled.span`
+    z-index: -1;
     position: fixed;
     background-image: radial-gradient(50% 50% at 50% 50%, ${({theme}) => transparentize(0.9, theme.primary2)}, transparent);
     top: 0;

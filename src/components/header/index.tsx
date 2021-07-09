@@ -154,12 +154,14 @@ function Header({ siteTitle }) {
                         return <Menu key={index} menulink={menulink} />
                     })
                 }
-                <AppLink
+                <a
                     target="_blank"
-                    to="https://app.darumaswap.org/"
+                    href="https://app.darumaswap.org/"
                 >
-                    Use Darumaswap
-                </AppLink>
+                    <AppLink>
+                        Use Darumaswap
+                    </AppLink>
+                </a>
             </StyledNav>
             <StyledMenuIcon open={isMenuOpen} onClick={toogleIsMenuOpen} />
         </StyledHeader>

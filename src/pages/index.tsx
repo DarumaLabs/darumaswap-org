@@ -7,7 +7,7 @@ import Layout from "../layouts"
 import Seo from "../components/seo"
 import BlogCardsGrid, { BlogCardData } from '../components/blogCard'
 import TokenData from '../components/tokenData'
-import { CardBGImage, CardRadial } from '../components/utils'
+import { CardBGImage } from '../components/utils'
 import Katakana from '../images/katakana.inline.svg'
 import { PrimaryButton, SecondaryButton } from '../components/button'
 import LiquidityIcon from '../images/liquidity.inline.svg'
@@ -16,6 +16,7 @@ import StakingIcon from '../images/staking.inline.svg'
 import AnalyticsIcon from '../images/analytics.inline.svg'
 
 const BGCard = styled.span`
+    z-index: -99;
     width: 100vw;
     height 70%;
     max-height: 900px;
@@ -183,7 +184,14 @@ export default function Home() {
                     }
                 }
             },
-            darumaswapIllustration: file(relativePath: { eq: "darumaswap-illustration.png" }) {
+            appIllustration: file(relativePath: { eq: "app-illustration.png" }) {
+                childImageSharp {
+                    fluid(quality: 100, maxWidth: 512) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            },
+            tokenIllustration: file(relativePath: { eq: "token-illustration.png" }) {
                 childImageSharp {
                     fluid(quality: 100, maxWidth: 512) {
                         ...GatsbyImageSharpFluid
@@ -230,7 +238,6 @@ export default function Home() {
             />
             <BGCard>
                 <CardBGImage />
-                <CardRadial />
             </BGCard>
             <StyledBody>
                 <TitleSection>
@@ -241,16 +248,12 @@ export default function Home() {
                     <StyledKatakana />
                     <Subtitle>The new generation of decentralised swapping protocol</Subtitle>
                     <TitleButtonsWrapper>
-                        <PrimaryButton
-                            href="https://app.darumaswap.org"
-                        >
-                            Use Darumaswap
-                        </PrimaryButton>
-                        <SecondaryButton
-                            href="/docs"
-                        >
-                            Documentation
-                        </SecondaryButton>
+                        <a href='https://app.darumaswap.org' >
+                            <PrimaryButton>Use Darumaswap</PrimaryButton>
+                        </a>
+                        <Link to='/docs' >
+                            <SecondaryButton>Documentation</SecondaryButton>
+                        </Link>
                     </TitleButtonsWrapper>
                 </TitleSection>
                 <StyledTokenData />
@@ -331,7 +334,7 @@ const AppSection = props => {
                     unlike a deflationary token.
                 </SectionText>
             </div>
-            <SectionIllustration fluid={props.data.darumaswapIllustration.childImageSharp.fluid} />
+            <SectionIllustration fluid={props.data.appIllustration.childImageSharp.fluid} />
         </SectionWrapper>
     )
 }
@@ -348,7 +351,7 @@ const TokenSection = props => {
                     in order to buy DARUMA tokens and send them to the DARUMA staking pool.
                 </SectionText>
             </div>
-            <SectionIllustration fluid={props.data.darumaswapIllustration.childImageSharp.fluid} />
+            <SectionIllustration fluid={props.data.tokenIllustration.childImageSharp.fluid} />
         </SectionWrapper>
     )
 }

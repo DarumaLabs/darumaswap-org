@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import Caret from '../images/caret.inline.svg'
 
-const BaseButton = styled(Link)`
+const BaseButton = styled.button`
     border-radius: 0.5rem;
     border: none;
     outline: none;
@@ -14,7 +13,7 @@ const BaseButton = styled(Link)`
     width: fit-content;
     padding: 0.3rem 1.25rem;
     text-decoration: none;
-    max-height: 35px;
+    min-height: 35px;
     transition: transform 0.2s ease;
     color: ${({theme}) => theme.text1};
     font-size: 1rem;
@@ -46,6 +45,11 @@ export const PrimaryButton = styled(BaseButton)`
 export const SecondaryButton = styled(BaseButton)`
     background: transparent;
     border: 1px solid ${({theme}) => theme.white};
+
+    ${({theme, selected}) => selected && css`
+        background: ${theme.white};
+        color: ${theme.bg1};
+    `}
 `
 
 const StyledNavigationButton = styled(SecondaryButton)`

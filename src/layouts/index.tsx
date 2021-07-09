@@ -5,6 +5,7 @@ import Header from '../components/header'
 import DocsHeader from '../components/header/docs'
 import Footer from '../components/footer'
 import ThemeProvider from '../styles/theme'
+import { CardRadial } from '../components/utils'
 
 import '../styles/layout.css'
 import '../styles/fonts.css'
@@ -28,6 +29,7 @@ export default function Layout({ children, isDocs, path }: LayoutProps) {
 
     return (
         <ThemeProvider>
+            <CardRadial/>
             {isDocs ? (
                 <DocsHeader path={path} />
             ) : (

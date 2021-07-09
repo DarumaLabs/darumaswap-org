@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Layout from './'
@@ -197,7 +197,7 @@ export default function Docs({data, pageContext, path}) {
     }
 
     const editContentUrl = data.site.siteMetadata.repository
-    + '/tree/documentation/'
+    + '/tree/main/'
     + pageContext.relativePath
 
     return (
@@ -218,23 +218,26 @@ export default function Docs({data, pageContext, path}) {
                     <MDXRenderer>{data.mdx.body}</MDXRenderer>
                     <NavigationWrapper>
                         {previous && node.fields.slug !== '/docs/' &&
-                            <NavigationButton
-                                direction={NavigationDirection.Previous}
-                                to={previous.fields.slug}
-                            >{previous.frontmatter.title}</NavigationButton> ||
+                            <Link to={previous.fields.slug} >
+                                <NavigationButton direction={NavigationDirection.Previous} >
+                                    {previous.frontmatter.title}
+                                </NavigationButton>
+                            </Link> ||
                             <div />
                         }
                         {next && next.fields.slug !== '/docs/' &&
-                            <NavigationButton
-                                direction={NavigationDirection.Next}
-                                to={next.fields.slug}
-                            >{next.frontmatter.title}</NavigationButton>
+                            <Link to={next.fields.slug} >
+                                <NavigationButton direction={NavigationDirection.Next} >
+                                    {next.frontmatter.title}
+                                </NavigationButton>
+                            </Link>
                         }
                         {node.fields.slug === '/docs/' &&
-                            <NavigationButton
-                                direction={NavigationDirection.Next}
-                                to={data.allMdx.edges[0].node.fields.slug}
-                            >{data.allMdx.edges[0].node.frontmatter.title}</NavigationButton>
+                            <Link to={data.allMdx.edges[0].node.fields.slug} >
+                                <NavigationButton direction={NavigationDirection.Next} >
+                                    {data.allMdx.edges[0].node.frontmatter.title}
+                                </NavigationButton>
+                            </Link>
                         }
                     </NavigationWrapper>
                 </StyledBody>

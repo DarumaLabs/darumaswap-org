@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import Layout from "../layouts"
 import Seo from "../components/seo"
 import BlogCardsGrid from '../components/blogCard'
+import Title from '../components/title'
 
 const BlogSection = styled.section`
     margin: 4rem auto;
@@ -23,12 +24,7 @@ const BlogSection = styled.section`
     `}
 `
 
-const BlogTitle = styled.h1`
-    font-size: 4rem;
-    font-weight: 500;
-    margin: 0 0 0 2rem;
-    line-height: 1;
-`
+
 
 export default function Blog() {
     const data = useStaticQuery(graphql`
@@ -65,7 +61,7 @@ export default function Blog() {
                 title="Blog"
             />
             <BlogSection>
-                <BlogTitle>Blog</BlogTitle>
+                <Title>Blog</Title>
                 <BlogCardsGrid data={posts} large={true} />
             </BlogSection>
         </Layout>

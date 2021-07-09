@@ -8,6 +8,9 @@ const menu = [
             }, {
                 name: "Twitter",
                 href: "https://twitter.com/DarumaLabs"
+            }, {
+                name: "Reddit",
+                href: "https://reddit.com/r/darumaswap"
             }
         ]
     }, {
@@ -30,9 +33,6 @@ const menu = [
             }, {
                 name: "Meet Team",
                 href: "/team"
-            }, {
-                name: "Reddit",
-                href: "https://reddit.com/r/darumaswap"
             }
         ]
     }
