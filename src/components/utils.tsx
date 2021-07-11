@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import backgroundImage from '../images/background.png'
 import { transparentize } from 'polished'
@@ -27,3 +28,21 @@ export const CardRadial = styled.span`
     right: 0;
     bottom: 0;
 `
+
+const StyledTextLogo = styled.span`
+    width: 30rem;
+    margin: 0.5rem 0 0;
+
+    ${({theme}) => theme.media.large`
+        width: 26rem;
+    `}
+`
+
+export const TextLogo = () => {
+    return (
+        <StyledTextLogo>
+            <Katakana />
+            <Romanji />
+        </StyledTextLogo>
+    )
+}

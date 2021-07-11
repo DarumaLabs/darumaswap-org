@@ -188,7 +188,7 @@ export default function Team() {
                         <br />
                         <br />
                         We do not share the values of the legacy financial system,
-                        but We believe in DeFi (Decentralized Finance).
+                        but we believe in DeFi (Decentralized Finance).
                         Hence, we’re playing our part to help building this ecosystem.
                     </p>
                 </StyledTeamSpeech>

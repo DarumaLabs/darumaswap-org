@@ -94,16 +94,6 @@ const TitleSection = styled.section`
     align-items: center;
 `
 
-const DarumaTitle = styled.span`
-    color: ${({theme}) => theme.primaryText1};
-    font-weight: 700;
-    display: none;
-
-    ${({theme}) => theme.media.small`
-        display: initial;
-    `}
-`
-
 const StyledKatakana = styled(Katakana)`
     width: 30rem;
     margin: 0.5rem 0 0;
@@ -113,7 +103,15 @@ const StyledKatakana = styled(Katakana)`
     `}
 
     ${({theme}) => theme.media.small`
-        display: none;
+        margin: -2rem 0;
+        & #katakana {
+            display: none;
+        }
+    `}
+
+    ${({theme}) => theme.media.extraSmall`
+        margin: -1rem 0;
+        width 14rem;
     `}
 `
 
@@ -242,10 +240,9 @@ export default function Home() {
             <StyledBody>
                 <TitleSection>
                     <Title>
-                        Master DeFi with
-                        <DarumaTitle> DARUMA</DarumaTitle>
+                        Master DeFi with<span> </span>
+                        <StyledKatakana />
                     </Title>
-                    <StyledKatakana />
                     <Subtitle>The new generation of decentralised swapping protocol</Subtitle>
                     <TitleButtonsWrapper>
                         <a href='https://app.darumaswap.org' >
@@ -277,11 +274,12 @@ const SectionWrapper = styled.section`
 
     ${({theme}) => theme.media.medium`
         flex-direction: column;
+        gap: 2rem;
     `}
 
     ${({theme}) => theme.media.small`
         padding: 0 1rem;
-        margin: 4rem auto 0;
+        margin: 6rem auto 0;
     `}
 `
 
@@ -292,8 +290,24 @@ const SectionTitle = styled.h1`
     margin: 0 0 2rem;
 
     ${({theme}) => theme.media.small`
-        font-size: 2rem;
+        font-size: 1.75rem;
         text-align: left;
+    `}
+
+    ${({theme}) => theme.media.extraSmall`
+        font-size: 1.5rem;
+        text-align: left;
+    `}
+`
+
+const SectionText = styled.p`
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0;
+
+    ${({theme}) => theme.media.small`
+        text-align: left;
+        font-size: 1.25rem;
     `}
 `
 
@@ -305,18 +319,6 @@ const SectionIllustration = styled(Img)`
 
     ${({theme}) => theme.media.medium`
         margin: 0 !important;
-    `}
-`
-
-const AppIllustration = styled(SectionIllustration)`
-`
-
-const SectionText = styled.p`
-    font-size: 1.5rem;
-    text-align: center;
-
-    ${({theme}) => theme.media.small`
-        text-align: left;
     `}
 `
 
@@ -361,7 +363,10 @@ const CardsWrapper = styled.div`
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 4rem;
+
+    ${({theme}) => theme.media.small`
+        margin: 0;
+    `}
 `
 
 const Card = styled(Link)`
@@ -404,6 +409,10 @@ const CardsSectionTitle = styled(SectionTitle)`
     font-size: 4rem;
     text-align: center;
     margin: 0;
+
+    ${({theme}) => theme.media.small`
+        font-size: 3rem;
+    `}
 `
 
 const CardsSectionWrapper = styled(SectionWrapper)`
@@ -444,11 +453,10 @@ const CardsSection = (props: {data: CardsData}) => {
     )
 }
 
-const BlogSubtitle = styled.h3`
-    margin: 2rem 0 0;
+const BlogSubtitle = styled.p`
+    margin: 0;
     text-align: center;
     font-size: 1.5rem;
-    font-weight: 500;
 `
 
 const BlogCardsSection = (props: {data: Array<BlogCardData>}) => {

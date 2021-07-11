@@ -7,6 +7,10 @@ import Seo from "../components/seo"
 import BlogCardsGrid from '../components/blogCard'
 import Title from '../components/title'
 
+const StyledBlogCardsGrid = styled(BlogCardsGrid)`
+    margin-top: 4rem;
+`
+
 const BlogSection = styled.section`
     margin: 4rem auto;
     box-sizing: border-box;
@@ -23,8 +27,6 @@ const BlogSection = styled.section`
         margin: 2rem auto 0;
     `}
 `
-
-
 
 export default function Blog() {
     const data = useStaticQuery(graphql`
@@ -62,7 +64,7 @@ export default function Blog() {
             />
             <BlogSection>
                 <Title>Blog</Title>
-                <BlogCardsGrid data={posts} large={true} />
+                <StyledBlogCardsGrid data={posts} large={true} />
             </BlogSection>
         </Layout>
     )

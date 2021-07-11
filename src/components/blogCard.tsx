@@ -10,7 +10,6 @@ const BlogCardsWrapper = styled.div`
     display: grid;
     gap: 4rem;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 4rem;
     box-sizing: border-box;
 
     ${({theme}) => theme.media.large`
@@ -28,17 +27,18 @@ const BlogCardsWrapper = styled.div`
     `}
 `
 
-interface BlogCardsSectionProps {
+interface BlogCardsGridProps {
     large: boolean,
-    data: Array<BlogCardData>
+    data: Array<BlogCardData>,
+    className: string
 }
 
-export default function BlogCardsSection(props: BlogCardsSectionProps) {
+export default function BlogCardsGrid({large, data, className}: BlogCardsGridProps) {
     return (
-        <BlogCardsWrapper>
+        <BlogCardsWrapper className={className} >
             {
-                props.data.map((post, index) =>
-                    <BlogCard key={index} large={index === 0 && props.large} data={post.node} />
+                data.map((post, index) =>
+                    <BlogCard key={index} large={index === 0 && large} data={post.node} />
                 )
             }
         </BlogCardsWrapper>
